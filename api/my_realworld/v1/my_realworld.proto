@@ -1,0 +1,341 @@
+syntax = "proto3";
+
+package api.my_realworld.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "github.com/hl540/my-realworld/api/my_realworld/v1;v1";
+
+service MyRealworld {
+	// 认证
+	rpc Auth(AuthReq) returns (AuthRsp) {
+		option (google.api.http) = {
+			post: "/api/users/login"
+			body: "*"
+		};
+	}
+	// 注册
+	rpc Register(RegisterReq) returns (RegisterRsp) {
+		option (google.api.http) = {
+			post: "/api/users"
+			body: "*"
+		};
+	}
+	// 当前用户
+	rpc CurrentUser(CurrentUserReq) returns (CurrentUserRsp) {
+		option (google.api.http) = {
+			get: "/api/user"
+		};
+	}
+	// 更新用户
+	rpc UpdateUser(UpdateUserReq) returns (UpdateUserRsp) {
+		option (google.api.http) = {
+			put: "/api/user"
+			body: "*"
+		};
+	}
+	// 获取用户
+	rpc GetUser(GetUserReq) returns (GetUserRsp) {
+		option (google.api.http) = {
+			get: "/api/profiles/{username}"
+		};
+	}
+	// 关注用户
+	rpc FollowUser(FollowUserReq) returns (FollowUserRsp) {
+		option (google.api.http) = {
+			post: "/api/profiles/{username}/follow"
+			body: "*"
+		};
+	}
+	// 取消关注用户
+	rpc UnfollowUser(FollowUserReq) returns (FollowUserRsp) {
+		option (google.api.http) = {
+			delete: "/api/profiles/{username}/follow"
+		};
+	}
+	// 列出文章
+	rpc ArticleList(ArticleListReq) returns (ArticleListRsp) {
+		option (google.api.http) = {
+			get: "/api/articles"
+		};
+	}
+	// 引用文章
+	rpc ArticleFeed(ArticleFeedReq) returns (ArticleFeedRsp) {
+		option (google.api.http) = {
+			get: "/api/articles/feed"
+		};
+	}
+	// 获取文章
+	rpc GetArticle(GetArticleReq) returns (GetArticleRsp) {
+		option (google.api.http) = {
+			get: "/api/articles/{slug}"
+		};
+	}
+	// 创建文章
+	rpc CreateArticle(CreateArticleReq) returns (CreateArticleRsp) {
+		option (google.api.http) = {
+			post: "/api/articles"
+			body: "*"
+		};
+	}
+	// 更新文章
+	rpc UpdateArticle(UpdateArticleReq) returns (UpdateArticleRsp) {
+		option (google.api.http) = {
+			put: "/api/articles/{slug}"
+			body: "article"
+		};
+	}
+	// 删除文章
+	rpc DeleteArticle(DeleteArticleReq) returns (DeleteArticleRsp) {
+		option (google.api.http) = {
+			delete: "/api/articles/{slug}"
+		};
+	}
+	// 评论文章
+	rpc CommentsArticle(CommentsArticleReq) returns (CommentsArticleRsp) {
+		option (google.api.http) = {
+			post: "/api/articles/{slug}/comments"
+			body: "comment"
+		};
+	}
+	// 获取评论
+	rpc GetComments(GetCommentsReq) returns (GetCommentsRsp) {
+		option (google.api.http) = {
+			get: "/api/articles/{slug}/comments"
+		};
+	}
+	// 删除评论
+	rpc DeleteComments(DeleteCommentsReq) returns (DeleteCommentsRsp) {
+		option (google.api.http) = {
+			delete: "/api/articles/{slug}/comments/{id}"
+		};
+	}
+	// 标记喜欢的文章
+	rpc FavoriteArticle(FavoriteArticleReq) returns (CommentsArticleRsp) {
+		option (google.api.http) = {
+			post: "/api/articles/{slug}/favorite"
+			body: "*"
+		};
+	}
+	// 取消标记喜欢的文章
+	rpc UnfavoriteArticle(FavoriteArticleReq) returns (FavoriteArticleReq) {
+		option (google.api.http) = {
+			delete: "/api/articles/{slug}/favorite"
+		};
+	}
+	// 获取标签
+	rpc GetTags(GetTagsReq) returns (GetTagsRsp) {
+		option (google.api.http) = {
+			get: "/api/tags"
+		};
+	}
+}
+
+message User {
+	string email = 1;
+    string token = 2;
+    string username = 3;
+    string image = 4;
+}
+
+message Profile {
+	string username = 1;
+	string bio = 2;
+	string image = 3;
+	bool following = 4;
+}
+
+message Author {
+	string username = 1;
+	string bio = 2;
+	string image = 3;
+	bool following = 4;
+}
+
+message Article {
+	string slug = 1;
+    string title = 2;
+    string description = 3;
+    string body = 4;
+    repeated string tagList = 5; 
+    string createdAt = 6;
+    string updatedAt = 7;
+    bool favorited = 8;
+    uint64 favoritesCount = 9;
+	Author article = 10;
+}
+
+message Comment {
+	uint64 id = 1;
+    string createdAt = 2;
+    string updatedAt = 3;
+    string body = 4;
+	Author author = 5; 
+}
+
+message AuthReq {
+	message User {
+		string email = 1;
+		string password = 2;
+	}
+	User user = 1;
+}
+
+message AuthRsp {
+	User user = 1;
+}
+
+message RegisterReq {
+	string username = 1;
+	string email = 2;
+	string password = 3;
+}
+
+message RegisterRsp {
+	User user = 1;
+}
+
+message CurrentUserReq {
+
+}
+
+message CurrentUserRsp {
+	User user = 1;
+}
+
+message UpdateUserReq {
+	message User {
+		string email = 1;
+		string username = 2;
+		string password = 3;
+		string image = 4;
+		string bio = 5;
+	}
+	User user = 1;
+}
+
+message UpdateUserRsp {
+	User user = 1;
+}
+
+message GetUserReq {
+	string username = 1;
+}
+
+message GetUserRsp {
+	Profile profile = 1;
+}
+
+message FollowUserReq {
+	string username = 1;
+}
+
+message FollowUserRsp {
+	Profile profile = 1;
+}
+
+message ArticleListReq {
+	string tag = 1;
+	string author = 2;
+	string favorited = 3;
+	uint64 limit = 4;
+	uint64 offset = 5;
+}
+
+message ArticleListRsp {
+	repeated Article articles = 1;
+	uint64 articlesCount = 2;
+}
+
+message ArticleFeedReq {
+	uint64 limit = 1;
+	uint64 offset = 2;
+}
+
+message ArticleFeedRsp {
+	repeated Article articles = 1;
+	uint64 articlesCount = 2;
+}
+
+message GetArticleReq {
+	string slug = 1;
+}
+
+message GetArticleRsp {
+	Article article = 1;
+}
+
+message CreateArticleReq {
+	message Article {
+		string title = 1;
+		string description = 2;
+		string body = 3;
+		repeated string tagList = 4;
+	}
+}
+
+message CreateArticleRsp {
+	Article article = 1;
+}
+
+message UpdateArticleReq {
+	message Article {
+		string title = 1;
+		string description = 2;
+		string body = 3;
+	}
+	string slug = 1;
+	Article article = 2;
+}
+
+message UpdateArticleRsp {
+	Article article = 1;
+}
+
+message DeleteArticleReq {
+	string slug = 1;
+}
+message DeleteArticleRsp {
+
+}
+
+message CommentsArticleReq {
+	message Comment {
+		string body = 1;
+	}
+	string slug = 1;
+	Comment comment = 2;
+}
+
+message CommentsArticleRsp {
+	Comment comment = 1;
+}
+
+message GetCommentsReq {
+	string slug = 1;
+}
+
+message GetCommentsRsp {
+	repeated Comment comments = 1;
+}
+
+message DeleteCommentsReq {
+	string slug = 1;
+	uint64 id = 2;
+}
+
+message DeleteCommentsRsp {
+
+}
+
+message FavoriteArticleReq {
+	string slug = 1;
+}
+
+message GetTagsReq {
+
+}
+
+message GetTagsRsp {
+	repeated string tags = 1;
+}

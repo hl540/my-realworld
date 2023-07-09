@@ -1,0 +1,773 @@
+# Generated with protoc-gen-openapi
+# https://github.com/google/gnostic/tree/master/cmd/protoc-gen-openapi
+
+openapi: 3.0.3
+info:
+    title: MyRealworld API
+    version: 0.0.1
+paths:
+    /api/articles:
+        get:
+            tags:
+                - MyRealworld
+            description: 列出文章
+            operationId: MyRealworld_ArticleList
+            parameters:
+                - name: tag
+                  in: query
+                  schema:
+                    type: string
+                - name: author
+                  in: query
+                  schema:
+                    type: string
+                - name: favorited
+                  in: query
+                  schema:
+                    type: string
+                - name: limit
+                  in: query
+                  schema:
+                    type: integer
+                    format: uint64
+                - name: offset
+                  in: query
+                  schema:
+                    type: integer
+                    format: uint64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ArticleListRsp'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+        post:
+            tags:
+                - MyRealworld
+            description: 创建文章
+            operationId: MyRealworld_CreateArticle
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/CreateArticleReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/CreateArticleRsp'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /api/articles/feed:
+        get:
+            tags:
+                - MyRealworld
+            description: 引用文章
+            operationId: MyRealworld_ArticleFeed
+            parameters:
+                - name: limit
+                  in: query
+                  schema:
+                    type: integer
+                    format: uint64
+                - name: offset
+                  in: query
+                  schema:
+                    type: integer
+                    format: uint64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ArticleFeedRsp'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /api/articles/{slug}:
+        get:
+            tags:
+                - MyRealworld
+            description: 获取文章
+            operationId: MyRealworld_GetArticle
+            parameters:
+                - name: slug
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/GetArticleRsp'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+        put:
+            tags:
+                - MyRealworld
+            description: 更新文章
+            operationId: MyRealworld_UpdateArticle
+            parameters:
+                - name: slug
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/UpdateArticleReq_Article'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/UpdateArticleRsp'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+        delete:
+            tags:
+                - MyRealworld
+            description: 删除文章
+            operationId: MyRealworld_DeleteArticle
+            parameters:
+                - name: slug
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/DeleteArticleRsp'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /api/articles/{slug}/comments:
+        get:
+            tags:
+                - MyRealworld
+            description: 获取评论
+            operationId: MyRealworld_GetComments
+            parameters:
+                - name: slug
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/GetCommentsRsp'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+        post:
+            tags:
+                - MyRealworld
+            description: 评论文章
+            operationId: MyRealworld_CommentsArticle
+            parameters:
+                - name: slug
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/CommentsArticleReq_Comment'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/CommentsArticleRsp'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /api/articles/{slug}/comments/{id}:
+        delete:
+            tags:
+                - MyRealworld
+            description: 删除评论
+            operationId: MyRealworld_DeleteComments
+            parameters:
+                - name: slug
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: uint64
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/DeleteCommentsRsp'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /api/articles/{slug}/favorite:
+        post:
+            tags:
+                - MyRealworld
+            description: 标记喜欢的文章
+            operationId: MyRealworld_FavoriteArticle
+            parameters:
+                - name: slug
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/FavoriteArticleReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/CommentsArticleRsp'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+        delete:
+            tags:
+                - MyRealworld
+            description: 取消标记喜欢的文章
+            operationId: MyRealworld_UnfavoriteArticle
+            parameters:
+                - name: slug
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/FavoriteArticleReq'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /api/profiles/{username}:
+        get:
+            tags:
+                - MyRealworld
+            description: 获取用户
+            operationId: MyRealworld_GetUser
+            parameters:
+                - name: username
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/GetUserRsp'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /api/profiles/{username}/follow:
+        post:
+            tags:
+                - MyRealworld
+            description: 关注用户
+            operationId: MyRealworld_FollowUser
+            parameters:
+                - name: username
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/FollowUserReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/FollowUserRsp'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+        delete:
+            tags:
+                - MyRealworld
+            description: 取消关注用户
+            operationId: MyRealworld_UnfollowUser
+            parameters:
+                - name: username
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/FollowUserRsp'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /api/tags:
+        get:
+            tags:
+                - MyRealworld
+            description: 获取标签
+            operationId: MyRealworld_GetTags
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/GetTagsRsp'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /api/user:
+        get:
+            tags:
+                - MyRealworld
+            description: 当前用户
+            operationId: MyRealworld_CurrentUser
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/CurrentUserRsp'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+        put:
+            tags:
+                - MyRealworld
+            description: 更新用户
+            operationId: MyRealworld_UpdateUser
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/UpdateUserReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/UpdateUserRsp'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /api/users:
+        post:
+            tags:
+                - MyRealworld
+            description: 注册
+            operationId: MyRealworld_Register
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/RegisterReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/RegisterRsp'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    /api/users/login:
+        post:
+            tags:
+                - MyRealworld
+            description: 认证
+            operationId: MyRealworld_Auth
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/AuthReq'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/AuthRsp'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+components:
+    schemas:
+        Article:
+            type: object
+            properties:
+                slug:
+                    type: string
+                title:
+                    type: string
+                description:
+                    type: string
+                body:
+                    type: string
+                tagList:
+                    type: array
+                    items:
+                        type: string
+                createdAt:
+                    type: string
+                updatedAt:
+                    type: string
+                favorited:
+                    type: boolean
+                favoritesCount:
+                    type: integer
+                    format: uint64
+                article:
+                    $ref: '#/components/schemas/Author'
+        ArticleFeedRsp:
+            type: object
+            properties:
+                articles:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Article'
+                articlesCount:
+                    type: integer
+                    format: uint64
+        ArticleListRsp:
+            type: object
+            properties:
+                articles:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Article'
+                articlesCount:
+                    type: integer
+                    format: uint64
+        AuthReq:
+            type: object
+            properties:
+                user:
+                    $ref: '#/components/schemas/AuthReq_User'
+        AuthReq_User:
+            type: object
+            properties:
+                email:
+                    type: string
+                password:
+                    type: string
+        AuthRsp:
+            type: object
+            properties:
+                user:
+                    $ref: '#/components/schemas/User'
+        Author:
+            type: object
+            properties:
+                username:
+                    type: string
+                bio:
+                    type: string
+                image:
+                    type: string
+                following:
+                    type: boolean
+        Comment:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: uint64
+                createdAt:
+                    type: string
+                updatedAt:
+                    type: string
+                body:
+                    type: string
+                author:
+                    $ref: '#/components/schemas/Author'
+        CommentsArticleReq_Comment:
+            type: object
+            properties:
+                body:
+                    type: string
+        CommentsArticleRsp:
+            type: object
+            properties:
+                comment:
+                    $ref: '#/components/schemas/Comment'
+        CreateArticleReq:
+            type: object
+            properties: {}
+        CreateArticleRsp:
+            type: object
+            properties:
+                article:
+                    $ref: '#/components/schemas/Article'
+        CurrentUserRsp:
+            type: object
+            properties:
+                user:
+                    $ref: '#/components/schemas/User'
+        DeleteArticleRsp:
+            type: object
+            properties: {}
+        DeleteCommentsRsp:
+            type: object
+            properties: {}
+        FavoriteArticleReq:
+            type: object
+            properties:
+                slug:
+                    type: string
+        FollowUserReq:
+            type: object
+            properties:
+                username:
+                    type: string
+        FollowUserRsp:
+            type: object
+            properties:
+                profile:
+                    $ref: '#/components/schemas/Profile'
+        GetArticleRsp:
+            type: object
+            properties:
+                article:
+                    $ref: '#/components/schemas/Article'
+        GetCommentsRsp:
+            type: object
+            properties:
+                comments:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Comment'
+        GetTagsRsp:
+            type: object
+            properties:
+                tags:
+                    type: array
+                    items:
+                        type: string
+        GetUserRsp:
+            type: object
+            properties:
+                profile:
+                    $ref: '#/components/schemas/Profile'
+        GoogleProtobufAny:
+            type: object
+            properties:
+                '@type':
+                    type: string
+                    description: The type of the serialized message.
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+        Profile:
+            type: object
+            properties:
+                username:
+                    type: string
+                bio:
+                    type: string
+                image:
+                    type: string
+                following:
+                    type: boolean
+        RegisterReq:
+            type: object
+            properties:
+                username:
+                    type: string
+                email:
+                    type: string
+                password:
+                    type: string
+        RegisterRsp:
+            type: object
+            properties:
+                user:
+                    $ref: '#/components/schemas/User'
+        Status:
+            type: object
+            properties:
+                code:
+                    type: integer
+                    description: The status code, which should be an enum value of [google.rpc.Code][google.rpc.Code].
+                    format: int32
+                message:
+                    type: string
+                    description: A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the [google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client.
+                details:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/GoogleProtobufAny'
+                    description: A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+            description: 'The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).'
+        UpdateArticleReq_Article:
+            type: object
+            properties:
+                title:
+                    type: string
+                description:
+                    type: string
+                body:
+                    type: string
+        UpdateArticleRsp:
+            type: object
+            properties:
+                article:
+                    $ref: '#/components/schemas/Article'
+        UpdateUserReq:
+            type: object
+            properties:
+                user:
+                    $ref: '#/components/schemas/UpdateUserReq_User'
+        UpdateUserReq_User:
+            type: object
+            properties:
+                email:
+                    type: string
+                username:
+                    type: string
+                password:
+                    type: string
+                image:
+                    type: string
+                bio:
+                    type: string
+        UpdateUserRsp:
+            type: object
+            properties:
+                user:
+                    $ref: '#/components/schemas/User'
+        User:
+            type: object
+            properties:
+                email:
+                    type: string
+                token:
+                    type: string
+                username:
+                    type: string
+                image:
+                    type: string
+tags:
+    - name: MyRealworld
