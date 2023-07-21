@@ -4,6 +4,8 @@ import (
 	"context"
 	"fmt"
 
+	"github.com/hl540/my-realworld/internal/src/errors"
+
 	pb "github.com/hl540/my-realworld/api/my_realworld/v1"
 	"github.com/hl540/my-realworld/internal/biz"
 	"github.com/hl540/my-realworld/internal/src/middleware/auth"
@@ -76,5 +78,6 @@ func (s *MyRealworldService) UnfavoriteArticle(ctx context.Context, req *pb.Favo
 	return &pb.FavoriteArticleReq{}, nil
 }
 func (s *MyRealworldService) GetTags(ctx context.Context, req *pb.GetTagsReq) (*pb.GetTagsRsp, error) {
+	return nil, errors.NewHTTPError(501, "body", "xxxxxxxxxx")
 	return &pb.GetTagsRsp{}, nil
 }

@@ -2,8 +2,8 @@ package auth
 
 import (
 	"context"
-	"errors"
 	"fmt"
+	"github.com/hl540/my-realworld/internal/src/errors"
 	"strings"
 
 	"github.com/go-kratos/kratos/v2/middleware"
@@ -21,12 +21,13 @@ func NewJwt(jwtKey string) middleware.Middleware {
 				authStr := tr.RequestHeader().Get("Authorization")
 				auths := strings.SplitN(authStr, " ", 2)
 				if len(auths) != 2 || auths[0] != "Token" {
-					return nil, errors.New("there is no jwt token")
+					return nil, errors.NewHTTPError(401, "body", "there is no jwt token")
+
 				}
 				// 解析jwt
 				tokenInfo, err := ParseJwt(auths[1], jwtKey)
 				if err != nil {
-					return nil, err
+					return nil, errors.NewHTTPError(401, "body", err.Error())
 				}
 				ctx = NewContext(ctx, tokenInfo)
 				return handler(ctx, req)

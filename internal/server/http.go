@@ -7,12 +7,14 @@ import (
 	"github.com/hl540/my-realworld/internal/conf"
 	"github.com/hl540/my-realworld/internal/service"
 	"github.com/hl540/my-realworld/internal/src/middleware/auth"
+	"github.com/hl540/my-realworld/internal/src/errors"
 
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/go-kratos/kratos/v2/middleware"
 	"github.com/go-kratos/kratos/v2/middleware/recovery"
 	"github.com/go-kratos/kratos/v2/middleware/selector"
 	"github.com/go-kratos/kratos/v2/transport/http"
+	"github.com/gorilla/handlers"
 )
 
 // NewHTTPServer new an HTTP server.
@@ -20,8 +22,14 @@ func NewHTTPServer(c *conf.Server, myRealworld *service.MyRealworldService, logg
 	var opts = []http.ServerOption{
 		http.Middleware(
 			recovery.Recovery(),
-			authMiddleware(c),
+			authMiddleware(c),// 鉴权
 		),
+		http.Filter(handlers.CORS(// 跨域
+			handlers.AllowedOrigins([]string{"*"}),
+			handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE"}),
+		)),
+		// 自定义错误处理
+		http.ErrorEncoder(errors.ErrorEncoder),
 	}
 	if c.Http.Network != "" {
 		opts = append(opts, http.Network(c.Http.Network))
