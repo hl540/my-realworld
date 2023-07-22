@@ -1,41 +1,14 @@
-package auth
+package util
 
 import (
 	"context"
 	"fmt"
-	"github.com/hl540/my-realworld/internal/src/errors"
-	"strings"
-
-	"github.com/go-kratos/kratos/v2/middleware"
 	"github.com/go-kratos/kratos/v2/transport"
 	"github.com/golang-jwt/jwt/v4"
+	"strings"
 )
 
 type authKey struct{}
-
-func NewJwt(jwtKey string) middleware.Middleware {
-	return func(handler middleware.Handler) middleware.Handler {
-		return func(ctx context.Context, req interface{}) (interface{}, error) {
-			if tr, ok := transport.FromServerContext(ctx); ok {
-				// 解析header
-				authStr := tr.RequestHeader().Get("Authorization")
-				auths := strings.SplitN(authStr, " ", 2)
-				if len(auths) != 2 || auths[0] != "Token" {
-					return nil, errors.NewHTTPError(401, "body", "there is no jwt token")
-
-				}
-				// 解析jwt
-				tokenInfo, err := ParseJwt(auths[1], jwtKey)
-				if err != nil {
-					return nil, errors.NewHTTPError(401, "body", err.Error())
-				}
-				ctx = NewContext(ctx, tokenInfo)
-				return handler(ctx, req)
-			}
-			return handler(ctx, req)
-		}
-	}
-}
 
 // NewContext put auth info into context
 func NewContext(ctx context.Context, info jwt.Claims) context.Context {
@@ -48,7 +21,34 @@ func FromContext(ctx context.Context) (token jwt.MapClaims, ok bool) {
 	return
 }
 
-// 解析jwt
+const UserName = "username"
+
+func GetUserNameFromContext(ctx context.Context) string {
+	auth, ok := FromContext(ctx)
+	if !ok {
+		return ""
+	}
+	userName, ok := auth[UserName]
+	if !ok {
+		return ""
+	}
+	return userName.(string)
+}
+
+func ParseJwtToken(ctx context.Context) string {
+	if tr, ok := transport.FromServerContext(ctx); ok {
+		// 解析header
+		authStr := tr.RequestHeader().Get("Authorization")
+		auths := strings.SplitN(authStr, " ", 2)
+		if len(auths) != 2 || auths[0] != "Token" {
+			return ""
+		}
+		return auths[1]
+	}
+	return ""
+}
+
+// ParseJwt 解析jwt
 func ParseJwt(tokenStr string, secretKey string) (jwt.MapClaims, error) {
 	// 解析jwt内容
 	token, err := jwt.Parse(tokenStr, func(token *jwt.Token) (interface{}, error) {
@@ -69,8 +69,8 @@ func ParseJwt(tokenStr string, secretKey string) (jwt.MapClaims, error) {
 	}
 }
 
-// 生成jwt
+// MakeJwtString 生成jwt
 func MakeJwtString(data jwt.MapClaims, secretKey string) (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, data)
-	return token.SignedString(secretKey)
+	return token.SignedString([]byte(secretKey))
 }

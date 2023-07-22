@@ -41,13 +41,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/ArticleListRsp'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: '#/components/schemas/api.my_realworld.v1.ArticleListRsp'
         post:
             tags:
                 - MyRealworld
@@ -57,7 +51,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/CreateArticleReq'
+                            $ref: '#/components/schemas/api.my_realworld.v1.CreateArticleReq'
                 required: true
             responses:
                 "200":
@@ -65,13 +59,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/CreateArticleRsp'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: '#/components/schemas/api.my_realworld.v1.CreateArticleRsp'
     /api/articles/feed:
         get:
             tags:
@@ -95,13 +83,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/ArticleFeedRsp'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: '#/components/schemas/api.my_realworld.v1.ArticleFeedRsp'
     /api/articles/{slug}:
         get:
             tags:
@@ -120,13 +102,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/GetArticleRsp'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: '#/components/schemas/api.my_realworld.v1.GetArticleRsp'
         put:
             tags:
                 - MyRealworld
@@ -142,7 +118,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/UpdateArticleReq_Article'
+                            $ref: '#/components/schemas/api.my_realworld.v1.UpdateArticleReq_Article'
                 required: true
             responses:
                 "200":
@@ -150,13 +126,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/UpdateArticleRsp'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: '#/components/schemas/api.my_realworld.v1.UpdateArticleRsp'
         delete:
             tags:
                 - MyRealworld
@@ -174,13 +144,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/DeleteArticleRsp'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: '#/components/schemas/api.my_realworld.v1.DeleteArticleRsp'
     /api/articles/{slug}/comments:
         get:
             tags:
@@ -199,13 +163,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/GetCommentsRsp'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: '#/components/schemas/api.my_realworld.v1.GetCommentsRsp'
         post:
             tags:
                 - MyRealworld
@@ -221,7 +179,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/CommentsArticleReq_Comment'
+                            $ref: '#/components/schemas/api.my_realworld.v1.CommentsArticleReq_Comment'
                 required: true
             responses:
                 "200":
@@ -229,13 +187,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/CommentsArticleRsp'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: '#/components/schemas/api.my_realworld.v1.CommentsArticleRsp'
     /api/articles/{slug}/comments/{id}:
         delete:
             tags:
@@ -260,13 +212,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/DeleteCommentsRsp'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: '#/components/schemas/api.my_realworld.v1.DeleteCommentsRsp'
     /api/articles/{slug}/favorite:
         post:
             tags:
@@ -283,7 +229,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/FavoriteArticleReq'
+                            $ref: '#/components/schemas/api.my_realworld.v1.FavoriteArticleReq'
                 required: true
             responses:
                 "200":
@@ -291,13 +237,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/CommentsArticleRsp'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: '#/components/schemas/api.my_realworld.v1.CommentsArticleRsp'
         delete:
             tags:
                 - MyRealworld
@@ -315,13 +255,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/FavoriteArticleReq'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: '#/components/schemas/api.my_realworld.v1.FavoriteArticleReq'
     /api/profiles/{username}:
         get:
             tags:
@@ -340,13 +274,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/GetUserRsp'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: '#/components/schemas/api.my_realworld.v1.GetUserRsp'
     /api/profiles/{username}/follow:
         post:
             tags:
@@ -363,7 +291,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/FollowUserReq'
+                            $ref: '#/components/schemas/api.my_realworld.v1.FollowUserReq'
                 required: true
             responses:
                 "200":
@@ -371,13 +299,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/FollowUserRsp'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: '#/components/schemas/api.my_realworld.v1.FollowUserRsp'
         delete:
             tags:
                 - MyRealworld
@@ -395,13 +317,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/FollowUserRsp'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: '#/components/schemas/api.my_realworld.v1.FollowUserRsp'
     /api/tags:
         get:
             tags:
@@ -414,13 +330,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/GetTagsRsp'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: '#/components/schemas/api.my_realworld.v1.GetTagsRsp'
     /api/user:
         get:
             tags:
@@ -433,13 +343,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/CurrentUserRsp'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: '#/components/schemas/api.my_realworld.v1.CurrentUserRsp'
         put:
             tags:
                 - MyRealworld
@@ -449,7 +353,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/UpdateUserReq'
+                            $ref: '#/components/schemas/api.my_realworld.v1.UpdateUserReq'
                 required: true
             responses:
                 "200":
@@ -457,13 +361,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/UpdateUserRsp'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: '#/components/schemas/api.my_realworld.v1.UpdateUserRsp'
     /api/users:
         post:
             tags:
@@ -474,7 +372,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/RegisterReq'
+                            $ref: '#/components/schemas/api.my_realworld.v1.RegisterReq'
                 required: true
             responses:
                 "200":
@@ -482,13 +380,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/RegisterRsp'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: '#/components/schemas/api.my_realworld.v1.RegisterRsp'
     /api/users/login:
         post:
             tags:
@@ -499,7 +391,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/AuthReq'
+                            $ref: '#/components/schemas/api.my_realworld.v1.AuthReq'
                 required: true
             responses:
                 "200":
@@ -507,16 +399,10 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/AuthRsp'
-                default:
-                    description: Default error response
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Status'
+                                $ref: '#/components/schemas/api.my_realworld.v1.AuthRsp'
 components:
     schemas:
-        Article:
+        api.my_realworld.v1.Article:
             type: object
             properties:
                 slug:
@@ -541,45 +427,45 @@ components:
                     type: integer
                     format: uint64
                 article:
-                    $ref: '#/components/schemas/Author'
-        ArticleFeedRsp:
+                    $ref: '#/components/schemas/api.my_realworld.v1.Author'
+        api.my_realworld.v1.ArticleFeedRsp:
             type: object
             properties:
                 articles:
                     type: array
                     items:
-                        $ref: '#/components/schemas/Article'
+                        $ref: '#/components/schemas/api.my_realworld.v1.Article'
                 articlesCount:
                     type: integer
                     format: uint64
-        ArticleListRsp:
+        api.my_realworld.v1.ArticleListRsp:
             type: object
             properties:
                 articles:
                     type: array
                     items:
-                        $ref: '#/components/schemas/Article'
+                        $ref: '#/components/schemas/api.my_realworld.v1.Article'
                 articlesCount:
                     type: integer
                     format: uint64
-        AuthReq:
+        api.my_realworld.v1.AuthReq:
             type: object
             properties:
                 user:
-                    $ref: '#/components/schemas/AuthReq_User'
-        AuthReq_User:
+                    $ref: '#/components/schemas/api.my_realworld.v1.AuthReq_User'
+        api.my_realworld.v1.AuthReq_User:
             type: object
             properties:
                 email:
                     type: string
                 password:
                     type: string
-        AuthRsp:
+        api.my_realworld.v1.AuthRsp:
             type: object
             properties:
                 user:
-                    $ref: '#/components/schemas/User'
-        Author:
+                    $ref: '#/components/schemas/api.my_realworld.v1.User'
+        api.my_realworld.v1.Author:
             type: object
             properties:
                 username:
@@ -590,7 +476,7 @@ components:
                     type: string
                 following:
                     type: boolean
-        Comment:
+        api.my_realworld.v1.Comment:
             type: object
             properties:
                 id:
@@ -603,84 +489,76 @@ components:
                 body:
                     type: string
                 author:
-                    $ref: '#/components/schemas/Author'
-        CommentsArticleReq_Comment:
+                    $ref: '#/components/schemas/api.my_realworld.v1.Author'
+        api.my_realworld.v1.CommentsArticleReq_Comment:
             type: object
             properties:
                 body:
                     type: string
-        CommentsArticleRsp:
+        api.my_realworld.v1.CommentsArticleRsp:
             type: object
             properties:
                 comment:
-                    $ref: '#/components/schemas/Comment'
-        CreateArticleReq:
+                    $ref: '#/components/schemas/api.my_realworld.v1.Comment'
+        api.my_realworld.v1.CreateArticleReq:
             type: object
             properties: {}
-        CreateArticleRsp:
+        api.my_realworld.v1.CreateArticleRsp:
             type: object
             properties:
                 article:
-                    $ref: '#/components/schemas/Article'
-        CurrentUserRsp:
+                    $ref: '#/components/schemas/api.my_realworld.v1.Article'
+        api.my_realworld.v1.CurrentUserRsp:
             type: object
             properties:
                 user:
-                    $ref: '#/components/schemas/User'
-        DeleteArticleRsp:
+                    $ref: '#/components/schemas/api.my_realworld.v1.User'
+        api.my_realworld.v1.DeleteArticleRsp:
             type: object
             properties: {}
-        DeleteCommentsRsp:
+        api.my_realworld.v1.DeleteCommentsRsp:
             type: object
             properties: {}
-        FavoriteArticleReq:
+        api.my_realworld.v1.FavoriteArticleReq:
             type: object
             properties:
                 slug:
                     type: string
-        FollowUserReq:
+        api.my_realworld.v1.FollowUserReq:
             type: object
             properties:
                 username:
                     type: string
-        FollowUserRsp:
+        api.my_realworld.v1.FollowUserRsp:
             type: object
             properties:
                 profile:
-                    $ref: '#/components/schemas/Profile'
-        GetArticleRsp:
+                    $ref: '#/components/schemas/api.my_realworld.v1.Profile'
+        api.my_realworld.v1.GetArticleRsp:
             type: object
             properties:
                 article:
-                    $ref: '#/components/schemas/Article'
-        GetCommentsRsp:
+                    $ref: '#/components/schemas/api.my_realworld.v1.Article'
+        api.my_realworld.v1.GetCommentsRsp:
             type: object
             properties:
                 comments:
                     type: array
                     items:
-                        $ref: '#/components/schemas/Comment'
-        GetTagsRsp:
+                        $ref: '#/components/schemas/api.my_realworld.v1.Comment'
+        api.my_realworld.v1.GetTagsRsp:
             type: object
             properties:
                 tags:
                     type: array
                     items:
                         type: string
-        GetUserRsp:
+        api.my_realworld.v1.GetUserRsp:
             type: object
             properties:
                 profile:
-                    $ref: '#/components/schemas/Profile'
-        GoogleProtobufAny:
-            type: object
-            properties:
-                '@type':
-                    type: string
-                    description: The type of the serialized message.
-            additionalProperties: true
-            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
-        Profile:
+                    $ref: '#/components/schemas/api.my_realworld.v1.Profile'
+        api.my_realworld.v1.Profile:
             type: object
             properties:
                 username:
@@ -691,7 +569,12 @@ components:
                     type: string
                 following:
                     type: boolean
-        RegisterReq:
+        api.my_realworld.v1.RegisterReq:
+            type: object
+            properties:
+                user:
+                    $ref: '#/components/schemas/api.my_realworld.v1.RegisterReq_User'
+        api.my_realworld.v1.RegisterReq_User:
             type: object
             properties:
                 username:
@@ -700,28 +583,12 @@ components:
                     type: string
                 password:
                     type: string
-        RegisterRsp:
+        api.my_realworld.v1.RegisterRsp:
             type: object
             properties:
                 user:
-                    $ref: '#/components/schemas/User'
-        Status:
-            type: object
-            properties:
-                code:
-                    type: integer
-                    description: The status code, which should be an enum value of [google.rpc.Code][google.rpc.Code].
-                    format: int32
-                message:
-                    type: string
-                    description: A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the [google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client.
-                details:
-                    type: array
-                    items:
-                        $ref: '#/components/schemas/GoogleProtobufAny'
-                    description: A list of messages that carry the error details.  There is a common set of message types for APIs to use.
-            description: 'The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).'
-        UpdateArticleReq_Article:
+                    $ref: '#/components/schemas/api.my_realworld.v1.User'
+        api.my_realworld.v1.UpdateArticleReq_Article:
             type: object
             properties:
                 title:
@@ -730,17 +597,17 @@ components:
                     type: string
                 body:
                     type: string
-        UpdateArticleRsp:
+        api.my_realworld.v1.UpdateArticleRsp:
             type: object
             properties:
                 article:
-                    $ref: '#/components/schemas/Article'
-        UpdateUserReq:
+                    $ref: '#/components/schemas/api.my_realworld.v1.Article'
+        api.my_realworld.v1.UpdateUserReq:
             type: object
             properties:
                 user:
-                    $ref: '#/components/schemas/UpdateUserReq_User'
-        UpdateUserReq_User:
+                    $ref: '#/components/schemas/api.my_realworld.v1.UpdateUserReq_User'
+        api.my_realworld.v1.UpdateUserReq_User:
             type: object
             properties:
                 email:
@@ -753,12 +620,12 @@ components:
                     type: string
                 bio:
                     type: string
-        UpdateUserRsp:
+        api.my_realworld.v1.UpdateUserRsp:
             type: object
             properties:
                 user:
-                    $ref: '#/components/schemas/User'
-        User:
+                    $ref: '#/components/schemas/api.my_realworld.v1.User'
+        api.my_realworld.v1.User:
             type: object
             properties:
                 email:

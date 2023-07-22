@@ -133,9 +133,9 @@ service MyRealworld {
 
 message User {
 	string email = 1;
-    string token = 2;
-    string username = 3;
-    string image = 4;
+	string token = 2;
+	string username = 3;
+	string image = 4;
 }
 
 message Profile {
@@ -186,9 +186,12 @@ message AuthRsp {
 }
 
 message RegisterReq {
-	string username = 1;
-	string email = 2;
-	string password = 3;
+	message User {
+		string username = 1;
+		string email = 2;
+		string password = 3;
+	}
+	User user = 1;
 }
 
 message RegisterRsp {

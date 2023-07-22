@@ -2,12 +2,7 @@ package server
 
 import (
 	"context"
-
-	v1 "github.com/hl540/my-realworld/api/my_realworld/v1"
-	"github.com/hl540/my-realworld/internal/conf"
-	"github.com/hl540/my-realworld/internal/service"
-	"github.com/hl540/my-realworld/internal/src/middleware/auth"
-	"github.com/hl540/my-realworld/internal/src/errors"
+	middleware2 "github.com/hl540/my-realworld/internal/src/middleware"
 
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/go-kratos/kratos/v2/middleware"
@@ -15,6 +10,10 @@ import (
 	"github.com/go-kratos/kratos/v2/middleware/selector"
 	"github.com/go-kratos/kratos/v2/transport/http"
 	"github.com/gorilla/handlers"
+	v1 "github.com/hl540/my-realworld/api/my_realworld/v1"
+	"github.com/hl540/my-realworld/internal/conf"
+	"github.com/hl540/my-realworld/internal/service"
+	"github.com/hl540/my-realworld/internal/src/errors"
 )
 
 // NewHTTPServer new an HTTP server.
@@ -22,9 +21,9 @@ func NewHTTPServer(c *conf.Server, myRealworld *service.MyRealworldService, logg
 	var opts = []http.ServerOption{
 		http.Middleware(
 			recovery.Recovery(),
-			authMiddleware(c),// 鉴权
+			authMiddleware(c), // 鉴权
 		),
-		http.Filter(handlers.CORS(// 跨域
+		http.Filter(handlers.CORS( // 跨域
 			handlers.AllowedOrigins([]string{"*"}),
 			handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE"}),
 		)),
@@ -48,7 +47,7 @@ func NewHTTPServer(c *conf.Server, myRealworld *service.MyRealworldService, logg
 // 带白名单的鉴权组件
 func authMiddleware(c *conf.Server) middleware.Middleware {
 	// auth中间件
-	authMiddleware := auth.NewJwt(c.Jwt.GetSecretKey())
+	authMiddleware := middleware2.NewJwt(c.Jwt.GetSecretKey())
 	// 白名单
 	return selector.Server(authMiddleware).Match(func(ctx context.Context, operation string) bool {
 		for _, path := range c.GetJwt().GetWhitePath() {

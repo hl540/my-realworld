@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        v3.20.0
-// source: api/my_realworld/v1/my_realworld.proto
+// source: my_realworld/v1/my_realworld.proto
 
 package v1
 
@@ -35,7 +35,7 @@ type User struct {
 func (x *User) Reset() {
 	*x = User{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[0]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -48,7 +48,7 @@ func (x *User) String() string {
 func (*User) ProtoMessage() {}
 
 func (x *User) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[0]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -61,7 +61,7 @@ func (x *User) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use User.ProtoReflect.Descriptor instead.
 func (*User) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{0}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *User) GetEmail() string {
@@ -106,7 +106,7 @@ type Profile struct {
 func (x *Profile) Reset() {
 	*x = Profile{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[1]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -119,7 +119,7 @@ func (x *Profile) String() string {
 func (*Profile) ProtoMessage() {}
 
 func (x *Profile) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[1]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -132,7 +132,7 @@ func (x *Profile) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Profile.ProtoReflect.Descriptor instead.
 func (*Profile) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{1}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Profile) GetUsername() string {
@@ -177,7 +177,7 @@ type Author struct {
 func (x *Author) Reset() {
 	*x = Author{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[2]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -190,7 +190,7 @@ func (x *Author) String() string {
 func (*Author) ProtoMessage() {}
 
 func (x *Author) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[2]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -203,7 +203,7 @@ func (x *Author) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Author.ProtoReflect.Descriptor instead.
 func (*Author) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{2}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *Author) GetUsername() string {
@@ -254,7 +254,7 @@ type Article struct {
 func (x *Article) Reset() {
 	*x = Article{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[3]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -267,7 +267,7 @@ func (x *Article) String() string {
 func (*Article) ProtoMessage() {}
 
 func (x *Article) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[3]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -280,7 +280,7 @@ func (x *Article) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Article.ProtoReflect.Descriptor instead.
 func (*Article) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{3}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *Article) GetSlug() string {
@@ -368,7 +368,7 @@ type Comment struct {
 func (x *Comment) Reset() {
 	*x = Comment{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[4]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -381,7 +381,7 @@ func (x *Comment) String() string {
 func (*Comment) ProtoMessage() {}
 
 func (x *Comment) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[4]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -394,7 +394,7 @@ func (x *Comment) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Comment.ProtoReflect.Descriptor instead.
 func (*Comment) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{4}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *Comment) GetId() uint64 {
@@ -443,7 +443,7 @@ type AuthReq struct {
 func (x *AuthReq) Reset() {
 	*x = AuthReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[5]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -456,7 +456,7 @@ func (x *AuthReq) String() string {
 func (*AuthReq) ProtoMessage() {}
 
 func (x *AuthReq) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[5]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -469,7 +469,7 @@ func (x *AuthReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AuthReq.ProtoReflect.Descriptor instead.
 func (*AuthReq) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{5}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *AuthReq) GetUser() *AuthReq_User {
@@ -490,7 +490,7 @@ type AuthRsp struct {
 func (x *AuthRsp) Reset() {
 	*x = AuthRsp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[6]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -503,7 +503,7 @@ func (x *AuthRsp) String() string {
 func (*AuthRsp) ProtoMessage() {}
 
 func (x *AuthRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[6]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -516,7 +516,7 @@ func (x *AuthRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AuthRsp.ProtoReflect.Descriptor instead.
 func (*AuthRsp) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{6}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *AuthRsp) GetUser() *User {
@@ -531,15 +531,13 @@ type RegisterReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Username string `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
-	Email    string `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
-	Password string `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty"`
+	User *RegisterReq_User `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 }
 
 func (x *RegisterReq) Reset() {
 	*x = RegisterReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[7]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -552,7 +550,7 @@ func (x *RegisterReq) String() string {
 func (*RegisterReq) ProtoMessage() {}
 
 func (x *RegisterReq) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[7]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -565,28 +563,14 @@ func (x *RegisterReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RegisterReq.ProtoReflect.Descriptor instead.
 func (*RegisterReq) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{7}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *RegisterReq) GetUsername() string {
+func (x *RegisterReq) GetUser() *RegisterReq_User {
 	if x != nil {
-		return x.Username
+		return x.User
 	}
-	return ""
-}
-
-func (x *RegisterReq) GetEmail() string {
-	if x != nil {
-		return x.Email
-	}
-	return ""
-}
-
-func (x *RegisterReq) GetPassword() string {
-	if x != nil {
-		return x.Password
-	}
-	return ""
+	return nil
 }
 
 type RegisterRsp struct {
@@ -600,7 +584,7 @@ type RegisterRsp struct {
 func (x *RegisterRsp) Reset() {
 	*x = RegisterRsp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[8]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -613,7 +597,7 @@ func (x *RegisterRsp) String() string {
 func (*RegisterRsp) ProtoMessage() {}
 
 func (x *RegisterRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[8]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -626,7 +610,7 @@ func (x *RegisterRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RegisterRsp.ProtoReflect.Descriptor instead.
 func (*RegisterRsp) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{8}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *RegisterRsp) GetUser() *User {
@@ -645,7 +629,7 @@ type CurrentUserReq struct {
 func (x *CurrentUserReq) Reset() {
 	*x = CurrentUserReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[9]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -658,7 +642,7 @@ func (x *CurrentUserReq) String() string {
 func (*CurrentUserReq) ProtoMessage() {}
 
 func (x *CurrentUserReq) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[9]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -671,7 +655,7 @@ func (x *CurrentUserReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CurrentUserReq.ProtoReflect.Descriptor instead.
 func (*CurrentUserReq) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{9}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{9}
 }
 
 type CurrentUserRsp struct {
@@ -685,7 +669,7 @@ type CurrentUserRsp struct {
 func (x *CurrentUserRsp) Reset() {
 	*x = CurrentUserRsp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[10]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -698,7 +682,7 @@ func (x *CurrentUserRsp) String() string {
 func (*CurrentUserRsp) ProtoMessage() {}
 
 func (x *CurrentUserRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[10]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -711,7 +695,7 @@ func (x *CurrentUserRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CurrentUserRsp.ProtoReflect.Descriptor instead.
 func (*CurrentUserRsp) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{10}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *CurrentUserRsp) GetUser() *User {
@@ -732,7 +716,7 @@ type UpdateUserReq struct {
 func (x *UpdateUserReq) Reset() {
 	*x = UpdateUserReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[11]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -745,7 +729,7 @@ func (x *UpdateUserReq) String() string {
 func (*UpdateUserReq) ProtoMessage() {}
 
 func (x *UpdateUserReq) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[11]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -758,7 +742,7 @@ func (x *UpdateUserReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateUserReq.ProtoReflect.Descriptor instead.
 func (*UpdateUserReq) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{11}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *UpdateUserReq) GetUser() *UpdateUserReq_User {
@@ -779,7 +763,7 @@ type UpdateUserRsp struct {
 func (x *UpdateUserRsp) Reset() {
 	*x = UpdateUserRsp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[12]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -792,7 +776,7 @@ func (x *UpdateUserRsp) String() string {
 func (*UpdateUserRsp) ProtoMessage() {}
 
 func (x *UpdateUserRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[12]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -805,7 +789,7 @@ func (x *UpdateUserRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateUserRsp.ProtoReflect.Descriptor instead.
 func (*UpdateUserRsp) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{12}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *UpdateUserRsp) GetUser() *User {
@@ -826,7 +810,7 @@ type GetUserReq struct {
 func (x *GetUserReq) Reset() {
 	*x = GetUserReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[13]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -839,7 +823,7 @@ func (x *GetUserReq) String() string {
 func (*GetUserReq) ProtoMessage() {}
 
 func (x *GetUserReq) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[13]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -852,7 +836,7 @@ func (x *GetUserReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserReq.ProtoReflect.Descriptor instead.
 func (*GetUserReq) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{13}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *GetUserReq) GetUsername() string {
@@ -873,7 +857,7 @@ type GetUserRsp struct {
 func (x *GetUserRsp) Reset() {
 	*x = GetUserRsp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[14]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -886,7 +870,7 @@ func (x *GetUserRsp) String() string {
 func (*GetUserRsp) ProtoMessage() {}
 
 func (x *GetUserRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[14]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -899,7 +883,7 @@ func (x *GetUserRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserRsp.ProtoReflect.Descriptor instead.
 func (*GetUserRsp) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{14}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *GetUserRsp) GetProfile() *Profile {
@@ -920,7 +904,7 @@ type FollowUserReq struct {
 func (x *FollowUserReq) Reset() {
 	*x = FollowUserReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[15]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -933,7 +917,7 @@ func (x *FollowUserReq) String() string {
 func (*FollowUserReq) ProtoMessage() {}
 
 func (x *FollowUserReq) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[15]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -946,7 +930,7 @@ func (x *FollowUserReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FollowUserReq.ProtoReflect.Descriptor instead.
 func (*FollowUserReq) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{15}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *FollowUserReq) GetUsername() string {
@@ -967,7 +951,7 @@ type FollowUserRsp struct {
 func (x *FollowUserRsp) Reset() {
 	*x = FollowUserRsp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[16]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -980,7 +964,7 @@ func (x *FollowUserRsp) String() string {
 func (*FollowUserRsp) ProtoMessage() {}
 
 func (x *FollowUserRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[16]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -993,7 +977,7 @@ func (x *FollowUserRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FollowUserRsp.ProtoReflect.Descriptor instead.
 func (*FollowUserRsp) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{16}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *FollowUserRsp) GetProfile() *Profile {
@@ -1018,7 +1002,7 @@ type ArticleListReq struct {
 func (x *ArticleListReq) Reset() {
 	*x = ArticleListReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[17]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1031,7 +1015,7 @@ func (x *ArticleListReq) String() string {
 func (*ArticleListReq) ProtoMessage() {}
 
 func (x *ArticleListReq) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[17]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1044,7 +1028,7 @@ func (x *ArticleListReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ArticleListReq.ProtoReflect.Descriptor instead.
 func (*ArticleListReq) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{17}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *ArticleListReq) GetTag() string {
@@ -1094,7 +1078,7 @@ type ArticleListRsp struct {
 func (x *ArticleListRsp) Reset() {
 	*x = ArticleListRsp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[18]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1107,7 +1091,7 @@ func (x *ArticleListRsp) String() string {
 func (*ArticleListRsp) ProtoMessage() {}
 
 func (x *ArticleListRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[18]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1120,7 +1104,7 @@ func (x *ArticleListRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ArticleListRsp.ProtoReflect.Descriptor instead.
 func (*ArticleListRsp) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{18}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *ArticleListRsp) GetArticles() []*Article {
@@ -1149,7 +1133,7 @@ type ArticleFeedReq struct {
 func (x *ArticleFeedReq) Reset() {
 	*x = ArticleFeedReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[19]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1162,7 +1146,7 @@ func (x *ArticleFeedReq) String() string {
 func (*ArticleFeedReq) ProtoMessage() {}
 
 func (x *ArticleFeedReq) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[19]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1175,7 +1159,7 @@ func (x *ArticleFeedReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ArticleFeedReq.ProtoReflect.Descriptor instead.
 func (*ArticleFeedReq) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{19}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *ArticleFeedReq) GetLimit() uint64 {
@@ -1204,7 +1188,7 @@ type ArticleFeedRsp struct {
 func (x *ArticleFeedRsp) Reset() {
 	*x = ArticleFeedRsp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[20]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1217,7 +1201,7 @@ func (x *ArticleFeedRsp) String() string {
 func (*ArticleFeedRsp) ProtoMessage() {}
 
 func (x *ArticleFeedRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[20]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1230,7 +1214,7 @@ func (x *ArticleFeedRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ArticleFeedRsp.ProtoReflect.Descriptor instead.
 func (*ArticleFeedRsp) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{20}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *ArticleFeedRsp) GetArticles() []*Article {
@@ -1258,7 +1242,7 @@ type GetArticleReq struct {
 func (x *GetArticleReq) Reset() {
 	*x = GetArticleReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[21]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1271,7 +1255,7 @@ func (x *GetArticleReq) String() string {
 func (*GetArticleReq) ProtoMessage() {}
 
 func (x *GetArticleReq) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[21]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1284,7 +1268,7 @@ func (x *GetArticleReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetArticleReq.ProtoReflect.Descriptor instead.
 func (*GetArticleReq) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{21}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *GetArticleReq) GetSlug() string {
@@ -1305,7 +1289,7 @@ type GetArticleRsp struct {
 func (x *GetArticleRsp) Reset() {
 	*x = GetArticleRsp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[22]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1318,7 +1302,7 @@ func (x *GetArticleRsp) String() string {
 func (*GetArticleRsp) ProtoMessage() {}
 
 func (x *GetArticleRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[22]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1331,7 +1315,7 @@ func (x *GetArticleRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetArticleRsp.ProtoReflect.Descriptor instead.
 func (*GetArticleRsp) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{22}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *GetArticleRsp) GetArticle() *Article {
@@ -1350,7 +1334,7 @@ type CreateArticleReq struct {
 func (x *CreateArticleReq) Reset() {
 	*x = CreateArticleReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[23]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1363,7 +1347,7 @@ func (x *CreateArticleReq) String() string {
 func (*CreateArticleReq) ProtoMessage() {}
 
 func (x *CreateArticleReq) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[23]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1376,7 +1360,7 @@ func (x *CreateArticleReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateArticleReq.ProtoReflect.Descriptor instead.
 func (*CreateArticleReq) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{23}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{23}
 }
 
 type CreateArticleRsp struct {
@@ -1390,7 +1374,7 @@ type CreateArticleRsp struct {
 func (x *CreateArticleRsp) Reset() {
 	*x = CreateArticleRsp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[24]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[24]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1403,7 +1387,7 @@ func (x *CreateArticleRsp) String() string {
 func (*CreateArticleRsp) ProtoMessage() {}
 
 func (x *CreateArticleRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[24]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[24]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1416,7 +1400,7 @@ func (x *CreateArticleRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateArticleRsp.ProtoReflect.Descriptor instead.
 func (*CreateArticleRsp) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{24}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *CreateArticleRsp) GetArticle() *Article {
@@ -1438,7 +1422,7 @@ type UpdateArticleReq struct {
 func (x *UpdateArticleReq) Reset() {
 	*x = UpdateArticleReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[25]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[25]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1451,7 +1435,7 @@ func (x *UpdateArticleReq) String() string {
 func (*UpdateArticleReq) ProtoMessage() {}
 
 func (x *UpdateArticleReq) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[25]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[25]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1464,7 +1448,7 @@ func (x *UpdateArticleReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateArticleReq.ProtoReflect.Descriptor instead.
 func (*UpdateArticleReq) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{25}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *UpdateArticleReq) GetSlug() string {
@@ -1492,7 +1476,7 @@ type UpdateArticleRsp struct {
 func (x *UpdateArticleRsp) Reset() {
 	*x = UpdateArticleRsp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[26]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[26]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1505,7 +1489,7 @@ func (x *UpdateArticleRsp) String() string {
 func (*UpdateArticleRsp) ProtoMessage() {}
 
 func (x *UpdateArticleRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[26]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[26]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1518,7 +1502,7 @@ func (x *UpdateArticleRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateArticleRsp.ProtoReflect.Descriptor instead.
 func (*UpdateArticleRsp) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{26}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *UpdateArticleRsp) GetArticle() *Article {
@@ -1539,7 +1523,7 @@ type DeleteArticleReq struct {
 func (x *DeleteArticleReq) Reset() {
 	*x = DeleteArticleReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[27]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[27]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1552,7 +1536,7 @@ func (x *DeleteArticleReq) String() string {
 func (*DeleteArticleReq) ProtoMessage() {}
 
 func (x *DeleteArticleReq) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[27]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[27]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1565,7 +1549,7 @@ func (x *DeleteArticleReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteArticleReq.ProtoReflect.Descriptor instead.
 func (*DeleteArticleReq) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{27}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *DeleteArticleReq) GetSlug() string {
@@ -1584,7 +1568,7 @@ type DeleteArticleRsp struct {
 func (x *DeleteArticleRsp) Reset() {
 	*x = DeleteArticleRsp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[28]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[28]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1597,7 +1581,7 @@ func (x *DeleteArticleRsp) String() string {
 func (*DeleteArticleRsp) ProtoMessage() {}
 
 func (x *DeleteArticleRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[28]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[28]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1610,7 +1594,7 @@ func (x *DeleteArticleRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteArticleRsp.ProtoReflect.Descriptor instead.
 func (*DeleteArticleRsp) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{28}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{28}
 }
 
 type CommentsArticleReq struct {
@@ -1625,7 +1609,7 @@ type CommentsArticleReq struct {
 func (x *CommentsArticleReq) Reset() {
 	*x = CommentsArticleReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[29]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[29]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1638,7 +1622,7 @@ func (x *CommentsArticleReq) String() string {
 func (*CommentsArticleReq) ProtoMessage() {}
 
 func (x *CommentsArticleReq) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[29]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[29]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1651,7 +1635,7 @@ func (x *CommentsArticleReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CommentsArticleReq.ProtoReflect.Descriptor instead.
 func (*CommentsArticleReq) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{29}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *CommentsArticleReq) GetSlug() string {
@@ -1679,7 +1663,7 @@ type CommentsArticleRsp struct {
 func (x *CommentsArticleRsp) Reset() {
 	*x = CommentsArticleRsp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[30]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[30]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1692,7 +1676,7 @@ func (x *CommentsArticleRsp) String() string {
 func (*CommentsArticleRsp) ProtoMessage() {}
 
 func (x *CommentsArticleRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[30]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[30]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1705,7 +1689,7 @@ func (x *CommentsArticleRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CommentsArticleRsp.ProtoReflect.Descriptor instead.
 func (*CommentsArticleRsp) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{30}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *CommentsArticleRsp) GetComment() *Comment {
@@ -1726,7 +1710,7 @@ type GetCommentsReq struct {
 func (x *GetCommentsReq) Reset() {
 	*x = GetCommentsReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[31]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[31]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1739,7 +1723,7 @@ func (x *GetCommentsReq) String() string {
 func (*GetCommentsReq) ProtoMessage() {}
 
 func (x *GetCommentsReq) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[31]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[31]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1752,7 +1736,7 @@ func (x *GetCommentsReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCommentsReq.ProtoReflect.Descriptor instead.
 func (*GetCommentsReq) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{31}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *GetCommentsReq) GetSlug() string {
@@ -1773,7 +1757,7 @@ type GetCommentsRsp struct {
 func (x *GetCommentsRsp) Reset() {
 	*x = GetCommentsRsp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[32]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[32]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1786,7 +1770,7 @@ func (x *GetCommentsRsp) String() string {
 func (*GetCommentsRsp) ProtoMessage() {}
 
 func (x *GetCommentsRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[32]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[32]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1799,7 +1783,7 @@ func (x *GetCommentsRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCommentsRsp.ProtoReflect.Descriptor instead.
 func (*GetCommentsRsp) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{32}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *GetCommentsRsp) GetComments() []*Comment {
@@ -1821,7 +1805,7 @@ type DeleteCommentsReq struct {
 func (x *DeleteCommentsReq) Reset() {
 	*x = DeleteCommentsReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[33]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[33]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1834,7 +1818,7 @@ func (x *DeleteCommentsReq) String() string {
 func (*DeleteCommentsReq) ProtoMessage() {}
 
 func (x *DeleteCommentsReq) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[33]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[33]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1847,7 +1831,7 @@ func (x *DeleteCommentsReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteCommentsReq.ProtoReflect.Descriptor instead.
 func (*DeleteCommentsReq) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{33}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *DeleteCommentsReq) GetSlug() string {
@@ -1873,7 +1857,7 @@ type DeleteCommentsRsp struct {
 func (x *DeleteCommentsRsp) Reset() {
 	*x = DeleteCommentsRsp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[34]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[34]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1886,7 +1870,7 @@ func (x *DeleteCommentsRsp) String() string {
 func (*DeleteCommentsRsp) ProtoMessage() {}
 
 func (x *DeleteCommentsRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[34]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[34]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1899,7 +1883,7 @@ func (x *DeleteCommentsRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteCommentsRsp.ProtoReflect.Descriptor instead.
 func (*DeleteCommentsRsp) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{34}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{34}
 }
 
 type FavoriteArticleReq struct {
@@ -1913,7 +1897,7 @@ type FavoriteArticleReq struct {
 func (x *FavoriteArticleReq) Reset() {
 	*x = FavoriteArticleReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[35]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[35]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1926,7 +1910,7 @@ func (x *FavoriteArticleReq) String() string {
 func (*FavoriteArticleReq) ProtoMessage() {}
 
 func (x *FavoriteArticleReq) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[35]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[35]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1939,7 +1923,7 @@ func (x *FavoriteArticleReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FavoriteArticleReq.ProtoReflect.Descriptor instead.
 func (*FavoriteArticleReq) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{35}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *FavoriteArticleReq) GetSlug() string {
@@ -1958,7 +1942,7 @@ type GetTagsReq struct {
 func (x *GetTagsReq) Reset() {
 	*x = GetTagsReq{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[36]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[36]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1971,7 +1955,7 @@ func (x *GetTagsReq) String() string {
 func (*GetTagsReq) ProtoMessage() {}
 
 func (x *GetTagsReq) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[36]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[36]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1984,7 +1968,7 @@ func (x *GetTagsReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTagsReq.ProtoReflect.Descriptor instead.
 func (*GetTagsReq) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{36}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{36}
 }
 
 type GetTagsRsp struct {
@@ -1998,7 +1982,7 @@ type GetTagsRsp struct {
 func (x *GetTagsRsp) Reset() {
 	*x = GetTagsRsp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[37]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[37]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2011,7 +1995,7 @@ func (x *GetTagsRsp) String() string {
 func (*GetTagsRsp) ProtoMessage() {}
 
 func (x *GetTagsRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[37]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[37]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2024,7 +2008,7 @@ func (x *GetTagsRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTagsRsp.ProtoReflect.Descriptor instead.
 func (*GetTagsRsp) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{37}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *GetTagsRsp) GetTags() []string {
@@ -2046,7 +2030,7 @@ type AuthReq_User struct {
 func (x *AuthReq_User) Reset() {
 	*x = AuthReq_User{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[38]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[38]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2059,7 +2043,7 @@ func (x *AuthReq_User) String() string {
 func (*AuthReq_User) ProtoMessage() {}
 
 func (x *AuthReq_User) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[38]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[38]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2072,7 +2056,7 @@ func (x *AuthReq_User) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AuthReq_User.ProtoReflect.Descriptor instead.
 func (*AuthReq_User) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{5, 0}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{5, 0}
 }
 
 func (x *AuthReq_User) GetEmail() string {
@@ -2083,6 +2067,69 @@ func (x *AuthReq_User) GetEmail() string {
 }
 
 func (x *AuthReq_User) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
+type RegisterReq_User struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Username string `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+	Email    string `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
+	Password string `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty"`
+}
+
+func (x *RegisterReq_User) Reset() {
+	*x = RegisterReq_User{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[39]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *RegisterReq_User) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RegisterReq_User) ProtoMessage() {}
+
+func (x *RegisterReq_User) ProtoReflect() protoreflect.Message {
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[39]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RegisterReq_User.ProtoReflect.Descriptor instead.
+func (*RegisterReq_User) Descriptor() ([]byte, []int) {
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{7, 0}
+}
+
+func (x *RegisterReq_User) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
+func (x *RegisterReq_User) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+func (x *RegisterReq_User) GetPassword() string {
 	if x != nil {
 		return x.Password
 	}
@@ -2104,7 +2151,7 @@ type UpdateUserReq_User struct {
 func (x *UpdateUserReq_User) Reset() {
 	*x = UpdateUserReq_User{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[39]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[40]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2117,7 +2164,7 @@ func (x *UpdateUserReq_User) String() string {
 func (*UpdateUserReq_User) ProtoMessage() {}
 
 func (x *UpdateUserReq_User) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[39]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[40]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2130,7 +2177,7 @@ func (x *UpdateUserReq_User) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateUserReq_User.ProtoReflect.Descriptor instead.
 func (*UpdateUserReq_User) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{11, 0}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{11, 0}
 }
 
 func (x *UpdateUserReq_User) GetEmail() string {
@@ -2182,7 +2229,7 @@ type CreateArticleReq_Article struct {
 func (x *CreateArticleReq_Article) Reset() {
 	*x = CreateArticleReq_Article{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[40]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[41]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2195,7 +2242,7 @@ func (x *CreateArticleReq_Article) String() string {
 func (*CreateArticleReq_Article) ProtoMessage() {}
 
 func (x *CreateArticleReq_Article) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[40]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[41]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2208,7 +2255,7 @@ func (x *CreateArticleReq_Article) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateArticleReq_Article.ProtoReflect.Descriptor instead.
 func (*CreateArticleReq_Article) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{23, 0}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{23, 0}
 }
 
 func (x *CreateArticleReq_Article) GetTitle() string {
@@ -2252,7 +2299,7 @@ type UpdateArticleReq_Article struct {
 func (x *UpdateArticleReq_Article) Reset() {
 	*x = UpdateArticleReq_Article{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[41]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[42]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2265,7 +2312,7 @@ func (x *UpdateArticleReq_Article) String() string {
 func (*UpdateArticleReq_Article) ProtoMessage() {}
 
 func (x *UpdateArticleReq_Article) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[41]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[42]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2278,7 +2325,7 @@ func (x *UpdateArticleReq_Article) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateArticleReq_Article.ProtoReflect.Descriptor instead.
 func (*UpdateArticleReq_Article) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{25, 0}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{25, 0}
 }
 
 func (x *UpdateArticleReq_Article) GetTitle() string {
@@ -2313,7 +2360,7 @@ type CommentsArticleReq_Comment struct {
 func (x *CommentsArticleReq_Comment) Reset() {
 	*x = CommentsArticleReq_Comment{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[42]
+		mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[43]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2326,7 +2373,7 @@ func (x *CommentsArticleReq_Comment) String() string {
 func (*CommentsArticleReq_Comment) ProtoMessage() {}
 
 func (x *CommentsArticleReq_Comment) ProtoReflect() protoreflect.Message {
-	mi := &file_api_my_realworld_v1_my_realworld_proto_msgTypes[42]
+	mi := &file_my_realworld_v1_my_realworld_proto_msgTypes[43]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2339,7 +2386,7 @@ func (x *CommentsArticleReq_Comment) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CommentsArticleReq_Comment.ProtoReflect.Descriptor instead.
 func (*CommentsArticleReq_Comment) Descriptor() ([]byte, []int) {
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{29, 0}
+	return file_my_realworld_v1_my_realworld_proto_rawDescGZIP(), []int{29, 0}
 }
 
 func (x *CommentsArticleReq_Comment) GetBody() string {
@@ -2349,77 +2396,81 @@ func (x *CommentsArticleReq_Comment) GetBody() string {
 	return ""
 }
 
-var File_api_my_realworld_v1_my_realworld_proto protoreflect.FileDescriptor
+var File_my_realworld_v1_my_realworld_proto protoreflect.FileDescriptor
 
-var file_api_my_realworld_v1_my_realworld_proto_rawDesc = []byte{
-	0x0a, 0x26, 0x61, 0x70, 0x69, 0x2f, 0x6d, 0x79, 0x5f, 0x72, 0x65, 0x61, 0x6c, 0x77, 0x6f, 0x72,
-	0x6c, 0x64, 0x2f, 0x76, 0x31, 0x2f, 0x6d, 0x79, 0x5f, 0x72, 0x65, 0x61, 0x6c, 0x77, 0x6f, 0x72,
-	0x6c, 0x64, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x13, 0x61, 0x70, 0x69, 0x2e, 0x6d, 0x79,
-	0x5f, 0x72, 0x65, 0x61, 0x6c, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e, 0x76, 0x31, 0x1a, 0x1c, 0x67,
-	0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x61,
-	0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x64, 0x0a, 0x04, 0x55,
-	0x73, 0x65, 0x72, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x12, 0x14, 0x0a, 0x05, 0x74, 0x6f, 0x6b,
-	0x65, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x12,
-	0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x69,
-	0x6d, 0x61, 0x67, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x69, 0x6d, 0x61, 0x67,
-	0x65, 0x22, 0x6b, 0x0a, 0x07, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x12, 0x1a, 0x0a, 0x08,
-	0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08,
-	0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x62, 0x69, 0x6f, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x62, 0x69, 0x6f, 0x12, 0x14, 0x0a, 0x05, 0x69, 0x6d,
-	0x61, 0x67, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x69, 0x6d, 0x61, 0x67, 0x65,
-	0x12, 0x1c, 0x0a, 0x09, 0x66, 0x6f, 0x6c, 0x6c, 0x6f, 0x77, 0x69, 0x6e, 0x67, 0x18, 0x04, 0x20,
-	0x01, 0x28, 0x08, 0x52, 0x09, 0x66, 0x6f, 0x6c, 0x6c, 0x6f, 0x77, 0x69, 0x6e, 0x67, 0x22, 0x6a,
-	0x0a, 0x06, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72,
+var file_my_realworld_v1_my_realworld_proto_rawDesc = []byte{
+	0x0a, 0x22, 0x6d, 0x79, 0x5f, 0x72, 0x65, 0x61, 0x6c, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2f, 0x76,
+	0x31, 0x2f, 0x6d, 0x79, 0x5f, 0x72, 0x65, 0x61, 0x6c, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x12, 0x13, 0x61, 0x70, 0x69, 0x2e, 0x6d, 0x79, 0x5f, 0x72, 0x65, 0x61,
+	0x6c, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e, 0x76, 0x31, 0x1a, 0x1c, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
+	0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x64, 0x0a, 0x04, 0x55, 0x73, 0x65, 0x72, 0x12,
+	0x14, 0x0a, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05,
+	0x65, 0x6d, 0x61, 0x69, 0x6c, 0x12, 0x14, 0x0a, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x1a, 0x0a, 0x08, 0x75,
+	0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75,
+	0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x69, 0x6d, 0x61, 0x67, 0x65,
+	0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x69, 0x6d, 0x61, 0x67, 0x65, 0x22, 0x6b, 0x0a,
+	0x07, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72,
 	0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72,
 	0x6e, 0x61, 0x6d, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x62, 0x69, 0x6f, 0x18, 0x02, 0x20, 0x01, 0x28,
 	0x09, 0x52, 0x03, 0x62, 0x69, 0x6f, 0x12, 0x14, 0x0a, 0x05, 0x69, 0x6d, 0x61, 0x67, 0x65, 0x18,
 	0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x69, 0x6d, 0x61, 0x67, 0x65, 0x12, 0x1c, 0x0a, 0x09,
 	0x66, 0x6f, 0x6c, 0x6c, 0x6f, 0x77, 0x69, 0x6e, 0x67, 0x18, 0x04, 0x20, 0x01, 0x28, 0x08, 0x52,
-	0x09, 0x66, 0x6f, 0x6c, 0x6c, 0x6f, 0x77, 0x69, 0x6e, 0x67, 0x22, 0xbc, 0x02, 0x0a, 0x07, 0x41,
-	0x72, 0x74, 0x69, 0x63, 0x6c, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x6c, 0x75, 0x67, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x73, 0x6c, 0x75, 0x67, 0x12, 0x14, 0x0a, 0x05, 0x74, 0x69,
-	0x74, 0x6c, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x74, 0x69, 0x74, 0x6c, 0x65,
-	0x12, 0x20, 0x0a, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18,
-	0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69,
-	0x6f, 0x6e, 0x12, 0x12, 0x0a, 0x04, 0x62, 0x6f, 0x64, 0x79, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x04, 0x62, 0x6f, 0x64, 0x79, 0x12, 0x18, 0x0a, 0x07, 0x74, 0x61, 0x67, 0x4c, 0x69, 0x73,
-	0x74, 0x18, 0x05, 0x20, 0x03, 0x28, 0x09, 0x52, 0x07, 0x74, 0x61, 0x67, 0x4c, 0x69, 0x73, 0x74,
-	0x12, 0x1c, 0x0a, 0x09, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x18, 0x06, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x09, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x12, 0x1c,
-	0x0a, 0x09, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x18, 0x07, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x09, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x12, 0x1c, 0x0a, 0x09,
-	0x66, 0x61, 0x76, 0x6f, 0x72, 0x69, 0x74, 0x65, 0x64, 0x18, 0x08, 0x20, 0x01, 0x28, 0x08, 0x52,
-	0x09, 0x66, 0x61, 0x76, 0x6f, 0x72, 0x69, 0x74, 0x65, 0x64, 0x12, 0x26, 0x0a, 0x0e, 0x66, 0x61,
-	0x76, 0x6f, 0x72, 0x69, 0x74, 0x65, 0x73, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x09, 0x20, 0x01,
-	0x28, 0x04, 0x52, 0x0e, 0x66, 0x61, 0x76, 0x6f, 0x72, 0x69, 0x74, 0x65, 0x73, 0x43, 0x6f, 0x75,
-	0x6e, 0x74, 0x12, 0x35, 0x0a, 0x07, 0x61, 0x72, 0x74, 0x69, 0x63, 0x6c, 0x65, 0x18, 0x0a, 0x20,
-	0x01, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x6d, 0x79, 0x5f, 0x72, 0x65, 0x61,
-	0x6c, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72,
-	0x52, 0x07, 0x61, 0x72, 0x74, 0x69, 0x63, 0x6c, 0x65, 0x22, 0x9e, 0x01, 0x0a, 0x07, 0x43, 0x6f,
-	0x6d, 0x6d, 0x65, 0x6e, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x04, 0x52, 0x02, 0x69, 0x64, 0x12, 0x1c, 0x0a, 0x09, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64,
-	0x41, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65,
-	0x64, 0x41, 0x74, 0x12, 0x1c, 0x0a, 0x09, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74,
-	0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x41,
-	0x74, 0x12, 0x12, 0x0a, 0x04, 0x62, 0x6f, 0x64, 0x79, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x04, 0x62, 0x6f, 0x64, 0x79, 0x12, 0x33, 0x0a, 0x06, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x18,
-	0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x6d, 0x79, 0x5f, 0x72,
-	0x65, 0x61, 0x6c, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x75, 0x74, 0x68,
-	0x6f, 0x72, 0x52, 0x06, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x22, 0x7a, 0x0a, 0x07, 0x41, 0x75,
-	0x74, 0x68, 0x52, 0x65, 0x71, 0x12, 0x35, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x0b, 0x32, 0x21, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x6d, 0x79, 0x5f, 0x72, 0x65, 0x61,
-	0x6c, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x75, 0x74, 0x68, 0x52, 0x65,
-	0x71, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x1a, 0x38, 0x0a, 0x04,
-	0x55, 0x73, 0x65, 0x72, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x61,
-	0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x70, 0x61,
-	0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x22, 0x38, 0x0a, 0x07, 0x41, 0x75, 0x74, 0x68, 0x52, 0x73,
-	0x70, 0x12, 0x2d, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
-	0x19, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x6d, 0x79, 0x5f, 0x72, 0x65, 0x61, 0x6c, 0x77, 0x6f, 0x72,
-	0x6c, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72,
-	0x22, 0x5b, 0x0a, 0x0b, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x12,
+	0x09, 0x66, 0x6f, 0x6c, 0x6c, 0x6f, 0x77, 0x69, 0x6e, 0x67, 0x22, 0x6a, 0x0a, 0x06, 0x41, 0x75,
+	0x74, 0x68, 0x6f, 0x72, 0x12, 0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65,
+	0x12, 0x10, 0x0a, 0x03, 0x62, 0x69, 0x6f, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x62,
+	0x69, 0x6f, 0x12, 0x14, 0x0a, 0x05, 0x69, 0x6d, 0x61, 0x67, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x05, 0x69, 0x6d, 0x61, 0x67, 0x65, 0x12, 0x1c, 0x0a, 0x09, 0x66, 0x6f, 0x6c, 0x6c,
+	0x6f, 0x77, 0x69, 0x6e, 0x67, 0x18, 0x04, 0x20, 0x01, 0x28, 0x08, 0x52, 0x09, 0x66, 0x6f, 0x6c,
+	0x6c, 0x6f, 0x77, 0x69, 0x6e, 0x67, 0x22, 0xbc, 0x02, 0x0a, 0x07, 0x41, 0x72, 0x74, 0x69, 0x63,
+	0x6c, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x6c, 0x75, 0x67, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x04, 0x73, 0x6c, 0x75, 0x67, 0x12, 0x14, 0x0a, 0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x12, 0x20, 0x0a, 0x0b,
+	0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x12,
+	0x0a, 0x04, 0x62, 0x6f, 0x64, 0x79, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x62, 0x6f,
+	0x64, 0x79, 0x12, 0x18, 0x0a, 0x07, 0x74, 0x61, 0x67, 0x4c, 0x69, 0x73, 0x74, 0x18, 0x05, 0x20,
+	0x03, 0x28, 0x09, 0x52, 0x07, 0x74, 0x61, 0x67, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x1c, 0x0a, 0x09,
+	0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x09, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x12, 0x1c, 0x0a, 0x09, 0x75, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x75,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x12, 0x1c, 0x0a, 0x09, 0x66, 0x61, 0x76, 0x6f,
+	0x72, 0x69, 0x74, 0x65, 0x64, 0x18, 0x08, 0x20, 0x01, 0x28, 0x08, 0x52, 0x09, 0x66, 0x61, 0x76,
+	0x6f, 0x72, 0x69, 0x74, 0x65, 0x64, 0x12, 0x26, 0x0a, 0x0e, 0x66, 0x61, 0x76, 0x6f, 0x72, 0x69,
+	0x74, 0x65, 0x73, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x09, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0e,
+	0x66, 0x61, 0x76, 0x6f, 0x72, 0x69, 0x74, 0x65, 0x73, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x35,
+	0x0a, 0x07, 0x61, 0x72, 0x74, 0x69, 0x63, 0x6c, 0x65, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x1b, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x6d, 0x79, 0x5f, 0x72, 0x65, 0x61, 0x6c, 0x77, 0x6f, 0x72,
+	0x6c, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x52, 0x07, 0x61, 0x72,
+	0x74, 0x69, 0x63, 0x6c, 0x65, 0x22, 0x9e, 0x01, 0x0a, 0x07, 0x43, 0x6f, 0x6d, 0x6d, 0x65, 0x6e,
+	0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69,
+	0x64, 0x12, 0x1c, 0x0a, 0x09, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x12,
+	0x1c, 0x0a, 0x09, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x18, 0x03, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x09, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x12, 0x12, 0x0a,
+	0x04, 0x62, 0x6f, 0x64, 0x79, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x62, 0x6f, 0x64,
+	0x79, 0x12, 0x33, 0x0a, 0x06, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x18, 0x05, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x1b, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x6d, 0x79, 0x5f, 0x72, 0x65, 0x61, 0x6c, 0x77,
+	0x6f, 0x72, 0x6c, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x52, 0x06,
+	0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x22, 0x7a, 0x0a, 0x07, 0x41, 0x75, 0x74, 0x68, 0x52, 0x65,
+	0x71, 0x12, 0x35, 0x0a, 0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x21, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x6d, 0x79, 0x5f, 0x72, 0x65, 0x61, 0x6c, 0x77, 0x6f, 0x72,
+	0x6c, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x75, 0x74, 0x68, 0x52, 0x65, 0x71, 0x2e, 0x55, 0x73,
+	0x65, 0x72, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x1a, 0x38, 0x0a, 0x04, 0x55, 0x73, 0x65, 0x72,
+	0x12, 0x14, 0x0a, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f,
+	0x72, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f,
+	0x72, 0x64, 0x22, 0x38, 0x0a, 0x07, 0x41, 0x75, 0x74, 0x68, 0x52, 0x73, 0x70, 0x12, 0x2d, 0x0a,
+	0x04, 0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x61, 0x70,
+	0x69, 0x2e, 0x6d, 0x79, 0x5f, 0x72, 0x65, 0x61, 0x6c, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e, 0x76,
+	0x31, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x22, 0x9e, 0x01, 0x0a,
+	0x0b, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x12, 0x39, 0x0a, 0x04,
+	0x75, 0x73, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x25, 0x2e, 0x61, 0x70, 0x69,
+	0x2e, 0x6d, 0x79, 0x5f, 0x72, 0x65, 0x61, 0x6c, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2e, 0x76, 0x31,
+	0x2e, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x52, 0x65, 0x71, 0x2e, 0x55, 0x73, 0x65,
+	0x72, 0x52, 0x04, 0x75, 0x73, 0x65, 0x72, 0x1a, 0x54, 0x0a, 0x04, 0x55, 0x73, 0x65, 0x72, 0x12,
 	0x1a, 0x0a, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
 	0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x65,
 	0x6d, 0x61, 0x69, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x65, 0x6d, 0x61, 0x69,
@@ -2718,19 +2769,19 @@ var file_api_my_realworld_v1_my_realworld_proto_rawDesc = []byte{
 }
 
 var (
-	file_api_my_realworld_v1_my_realworld_proto_rawDescOnce sync.Once
-	file_api_my_realworld_v1_my_realworld_proto_rawDescData = file_api_my_realworld_v1_my_realworld_proto_rawDesc
+	file_my_realworld_v1_my_realworld_proto_rawDescOnce sync.Once
+	file_my_realworld_v1_my_realworld_proto_rawDescData = file_my_realworld_v1_my_realworld_proto_rawDesc
 )
 
-func file_api_my_realworld_v1_my_realworld_proto_rawDescGZIP() []byte {
-	file_api_my_realworld_v1_my_realworld_proto_rawDescOnce.Do(func() {
-		file_api_my_realworld_v1_my_realworld_proto_rawDescData = protoimpl.X.CompressGZIP(file_api_my_realworld_v1_my_realworld_proto_rawDescData)
+func file_my_realworld_v1_my_realworld_proto_rawDescGZIP() []byte {
+	file_my_realworld_v1_my_realworld_proto_rawDescOnce.Do(func() {
+		file_my_realworld_v1_my_realworld_proto_rawDescData = protoimpl.X.CompressGZIP(file_my_realworld_v1_my_realworld_proto_rawDescData)
 	})
-	return file_api_my_realworld_v1_my_realworld_proto_rawDescData
+	return file_my_realworld_v1_my_realworld_proto_rawDescData
 }
 
-var file_api_my_realworld_v1_my_realworld_proto_msgTypes = make([]protoimpl.MessageInfo, 43)
-var file_api_my_realworld_v1_my_realworld_proto_goTypes = []interface{}{
+var file_my_realworld_v1_my_realworld_proto_msgTypes = make([]protoimpl.MessageInfo, 44)
+var file_my_realworld_v1_my_realworld_proto_goTypes = []interface{}{
 	(*User)(nil),                       // 0: api.my_realworld.v1.User
 	(*Profile)(nil),                    // 1: api.my_realworld.v1.Profile
 	(*Author)(nil),                     // 2: api.my_realworld.v1.Author
@@ -2770,83 +2821,85 @@ var file_api_my_realworld_v1_my_realworld_proto_goTypes = []interface{}{
 	(*GetTagsReq)(nil),                 // 36: api.my_realworld.v1.GetTagsReq
 	(*GetTagsRsp)(nil),                 // 37: api.my_realworld.v1.GetTagsRsp
 	(*AuthReq_User)(nil),               // 38: api.my_realworld.v1.AuthReq.User
-	(*UpdateUserReq_User)(nil),         // 39: api.my_realworld.v1.UpdateUserReq.User
-	(*CreateArticleReq_Article)(nil),   // 40: api.my_realworld.v1.CreateArticleReq.Article
-	(*UpdateArticleReq_Article)(nil),   // 41: api.my_realworld.v1.UpdateArticleReq.Article
-	(*CommentsArticleReq_Comment)(nil), // 42: api.my_realworld.v1.CommentsArticleReq.Comment
+	(*RegisterReq_User)(nil),           // 39: api.my_realworld.v1.RegisterReq.User
+	(*UpdateUserReq_User)(nil),         // 40: api.my_realworld.v1.UpdateUserReq.User
+	(*CreateArticleReq_Article)(nil),   // 41: api.my_realworld.v1.CreateArticleReq.Article
+	(*UpdateArticleReq_Article)(nil),   // 42: api.my_realworld.v1.UpdateArticleReq.Article
+	(*CommentsArticleReq_Comment)(nil), // 43: api.my_realworld.v1.CommentsArticleReq.Comment
 }
-var file_api_my_realworld_v1_my_realworld_proto_depIdxs = []int32{
+var file_my_realworld_v1_my_realworld_proto_depIdxs = []int32{
 	2,  // 0: api.my_realworld.v1.Article.article:type_name -> api.my_realworld.v1.Author
 	2,  // 1: api.my_realworld.v1.Comment.author:type_name -> api.my_realworld.v1.Author
 	38, // 2: api.my_realworld.v1.AuthReq.user:type_name -> api.my_realworld.v1.AuthReq.User
 	0,  // 3: api.my_realworld.v1.AuthRsp.user:type_name -> api.my_realworld.v1.User
-	0,  // 4: api.my_realworld.v1.RegisterRsp.user:type_name -> api.my_realworld.v1.User
-	0,  // 5: api.my_realworld.v1.CurrentUserRsp.user:type_name -> api.my_realworld.v1.User
-	39, // 6: api.my_realworld.v1.UpdateUserReq.user:type_name -> api.my_realworld.v1.UpdateUserReq.User
-	0,  // 7: api.my_realworld.v1.UpdateUserRsp.user:type_name -> api.my_realworld.v1.User
-	1,  // 8: api.my_realworld.v1.GetUserRsp.profile:type_name -> api.my_realworld.v1.Profile
-	1,  // 9: api.my_realworld.v1.FollowUserRsp.profile:type_name -> api.my_realworld.v1.Profile
-	3,  // 10: api.my_realworld.v1.ArticleListRsp.articles:type_name -> api.my_realworld.v1.Article
-	3,  // 11: api.my_realworld.v1.ArticleFeedRsp.articles:type_name -> api.my_realworld.v1.Article
-	3,  // 12: api.my_realworld.v1.GetArticleRsp.article:type_name -> api.my_realworld.v1.Article
-	3,  // 13: api.my_realworld.v1.CreateArticleRsp.article:type_name -> api.my_realworld.v1.Article
-	41, // 14: api.my_realworld.v1.UpdateArticleReq.article:type_name -> api.my_realworld.v1.UpdateArticleReq.Article
-	3,  // 15: api.my_realworld.v1.UpdateArticleRsp.article:type_name -> api.my_realworld.v1.Article
-	42, // 16: api.my_realworld.v1.CommentsArticleReq.comment:type_name -> api.my_realworld.v1.CommentsArticleReq.Comment
-	4,  // 17: api.my_realworld.v1.CommentsArticleRsp.comment:type_name -> api.my_realworld.v1.Comment
-	4,  // 18: api.my_realworld.v1.GetCommentsRsp.comments:type_name -> api.my_realworld.v1.Comment
-	5,  // 19: api.my_realworld.v1.MyRealworld.Auth:input_type -> api.my_realworld.v1.AuthReq
-	7,  // 20: api.my_realworld.v1.MyRealworld.Register:input_type -> api.my_realworld.v1.RegisterReq
-	9,  // 21: api.my_realworld.v1.MyRealworld.CurrentUser:input_type -> api.my_realworld.v1.CurrentUserReq
-	11, // 22: api.my_realworld.v1.MyRealworld.UpdateUser:input_type -> api.my_realworld.v1.UpdateUserReq
-	13, // 23: api.my_realworld.v1.MyRealworld.GetUser:input_type -> api.my_realworld.v1.GetUserReq
-	15, // 24: api.my_realworld.v1.MyRealworld.FollowUser:input_type -> api.my_realworld.v1.FollowUserReq
-	15, // 25: api.my_realworld.v1.MyRealworld.UnfollowUser:input_type -> api.my_realworld.v1.FollowUserReq
-	17, // 26: api.my_realworld.v1.MyRealworld.ArticleList:input_type -> api.my_realworld.v1.ArticleListReq
-	19, // 27: api.my_realworld.v1.MyRealworld.ArticleFeed:input_type -> api.my_realworld.v1.ArticleFeedReq
-	21, // 28: api.my_realworld.v1.MyRealworld.GetArticle:input_type -> api.my_realworld.v1.GetArticleReq
-	23, // 29: api.my_realworld.v1.MyRealworld.CreateArticle:input_type -> api.my_realworld.v1.CreateArticleReq
-	25, // 30: api.my_realworld.v1.MyRealworld.UpdateArticle:input_type -> api.my_realworld.v1.UpdateArticleReq
-	27, // 31: api.my_realworld.v1.MyRealworld.DeleteArticle:input_type -> api.my_realworld.v1.DeleteArticleReq
-	29, // 32: api.my_realworld.v1.MyRealworld.CommentsArticle:input_type -> api.my_realworld.v1.CommentsArticleReq
-	31, // 33: api.my_realworld.v1.MyRealworld.GetComments:input_type -> api.my_realworld.v1.GetCommentsReq
-	33, // 34: api.my_realworld.v1.MyRealworld.DeleteComments:input_type -> api.my_realworld.v1.DeleteCommentsReq
-	35, // 35: api.my_realworld.v1.MyRealworld.FavoriteArticle:input_type -> api.my_realworld.v1.FavoriteArticleReq
-	35, // 36: api.my_realworld.v1.MyRealworld.UnfavoriteArticle:input_type -> api.my_realworld.v1.FavoriteArticleReq
-	36, // 37: api.my_realworld.v1.MyRealworld.GetTags:input_type -> api.my_realworld.v1.GetTagsReq
-	6,  // 38: api.my_realworld.v1.MyRealworld.Auth:output_type -> api.my_realworld.v1.AuthRsp
-	8,  // 39: api.my_realworld.v1.MyRealworld.Register:output_type -> api.my_realworld.v1.RegisterRsp
-	10, // 40: api.my_realworld.v1.MyRealworld.CurrentUser:output_type -> api.my_realworld.v1.CurrentUserRsp
-	12, // 41: api.my_realworld.v1.MyRealworld.UpdateUser:output_type -> api.my_realworld.v1.UpdateUserRsp
-	14, // 42: api.my_realworld.v1.MyRealworld.GetUser:output_type -> api.my_realworld.v1.GetUserRsp
-	16, // 43: api.my_realworld.v1.MyRealworld.FollowUser:output_type -> api.my_realworld.v1.FollowUserRsp
-	16, // 44: api.my_realworld.v1.MyRealworld.UnfollowUser:output_type -> api.my_realworld.v1.FollowUserRsp
-	18, // 45: api.my_realworld.v1.MyRealworld.ArticleList:output_type -> api.my_realworld.v1.ArticleListRsp
-	20, // 46: api.my_realworld.v1.MyRealworld.ArticleFeed:output_type -> api.my_realworld.v1.ArticleFeedRsp
-	22, // 47: api.my_realworld.v1.MyRealworld.GetArticle:output_type -> api.my_realworld.v1.GetArticleRsp
-	24, // 48: api.my_realworld.v1.MyRealworld.CreateArticle:output_type -> api.my_realworld.v1.CreateArticleRsp
-	26, // 49: api.my_realworld.v1.MyRealworld.UpdateArticle:output_type -> api.my_realworld.v1.UpdateArticleRsp
-	28, // 50: api.my_realworld.v1.MyRealworld.DeleteArticle:output_type -> api.my_realworld.v1.DeleteArticleRsp
-	30, // 51: api.my_realworld.v1.MyRealworld.CommentsArticle:output_type -> api.my_realworld.v1.CommentsArticleRsp
-	32, // 52: api.my_realworld.v1.MyRealworld.GetComments:output_type -> api.my_realworld.v1.GetCommentsRsp
-	34, // 53: api.my_realworld.v1.MyRealworld.DeleteComments:output_type -> api.my_realworld.v1.DeleteCommentsRsp
-	30, // 54: api.my_realworld.v1.MyRealworld.FavoriteArticle:output_type -> api.my_realworld.v1.CommentsArticleRsp
-	35, // 55: api.my_realworld.v1.MyRealworld.UnfavoriteArticle:output_type -> api.my_realworld.v1.FavoriteArticleReq
-	37, // 56: api.my_realworld.v1.MyRealworld.GetTags:output_type -> api.my_realworld.v1.GetTagsRsp
-	38, // [38:57] is the sub-list for method output_type
-	19, // [19:38] is the sub-list for method input_type
-	19, // [19:19] is the sub-list for extension type_name
-	19, // [19:19] is the sub-list for extension extendee
-	0,  // [0:19] is the sub-list for field type_name
+	39, // 4: api.my_realworld.v1.RegisterReq.user:type_name -> api.my_realworld.v1.RegisterReq.User
+	0,  // 5: api.my_realworld.v1.RegisterRsp.user:type_name -> api.my_realworld.v1.User
+	0,  // 6: api.my_realworld.v1.CurrentUserRsp.user:type_name -> api.my_realworld.v1.User
+	40, // 7: api.my_realworld.v1.UpdateUserReq.user:type_name -> api.my_realworld.v1.UpdateUserReq.User
+	0,  // 8: api.my_realworld.v1.UpdateUserRsp.user:type_name -> api.my_realworld.v1.User
+	1,  // 9: api.my_realworld.v1.GetUserRsp.profile:type_name -> api.my_realworld.v1.Profile
+	1,  // 10: api.my_realworld.v1.FollowUserRsp.profile:type_name -> api.my_realworld.v1.Profile
+	3,  // 11: api.my_realworld.v1.ArticleListRsp.articles:type_name -> api.my_realworld.v1.Article
+	3,  // 12: api.my_realworld.v1.ArticleFeedRsp.articles:type_name -> api.my_realworld.v1.Article
+	3,  // 13: api.my_realworld.v1.GetArticleRsp.article:type_name -> api.my_realworld.v1.Article
+	3,  // 14: api.my_realworld.v1.CreateArticleRsp.article:type_name -> api.my_realworld.v1.Article
+	42, // 15: api.my_realworld.v1.UpdateArticleReq.article:type_name -> api.my_realworld.v1.UpdateArticleReq.Article
+	3,  // 16: api.my_realworld.v1.UpdateArticleRsp.article:type_name -> api.my_realworld.v1.Article
+	43, // 17: api.my_realworld.v1.CommentsArticleReq.comment:type_name -> api.my_realworld.v1.CommentsArticleReq.Comment
+	4,  // 18: api.my_realworld.v1.CommentsArticleRsp.comment:type_name -> api.my_realworld.v1.Comment
+	4,  // 19: api.my_realworld.v1.GetCommentsRsp.comments:type_name -> api.my_realworld.v1.Comment
+	5,  // 20: api.my_realworld.v1.MyRealworld.Auth:input_type -> api.my_realworld.v1.AuthReq
+	7,  // 21: api.my_realworld.v1.MyRealworld.Register:input_type -> api.my_realworld.v1.RegisterReq
+	9,  // 22: api.my_realworld.v1.MyRealworld.CurrentUser:input_type -> api.my_realworld.v1.CurrentUserReq
+	11, // 23: api.my_realworld.v1.MyRealworld.UpdateUser:input_type -> api.my_realworld.v1.UpdateUserReq
+	13, // 24: api.my_realworld.v1.MyRealworld.GetUser:input_type -> api.my_realworld.v1.GetUserReq
+	15, // 25: api.my_realworld.v1.MyRealworld.FollowUser:input_type -> api.my_realworld.v1.FollowUserReq
+	15, // 26: api.my_realworld.v1.MyRealworld.UnfollowUser:input_type -> api.my_realworld.v1.FollowUserReq
+	17, // 27: api.my_realworld.v1.MyRealworld.ArticleList:input_type -> api.my_realworld.v1.ArticleListReq
+	19, // 28: api.my_realworld.v1.MyRealworld.ArticleFeed:input_type -> api.my_realworld.v1.ArticleFeedReq
+	21, // 29: api.my_realworld.v1.MyRealworld.GetArticle:input_type -> api.my_realworld.v1.GetArticleReq
+	23, // 30: api.my_realworld.v1.MyRealworld.CreateArticle:input_type -> api.my_realworld.v1.CreateArticleReq
+	25, // 31: api.my_realworld.v1.MyRealworld.UpdateArticle:input_type -> api.my_realworld.v1.UpdateArticleReq
+	27, // 32: api.my_realworld.v1.MyRealworld.DeleteArticle:input_type -> api.my_realworld.v1.DeleteArticleReq
+	29, // 33: api.my_realworld.v1.MyRealworld.CommentsArticle:input_type -> api.my_realworld.v1.CommentsArticleReq
+	31, // 34: api.my_realworld.v1.MyRealworld.GetComments:input_type -> api.my_realworld.v1.GetCommentsReq
+	33, // 35: api.my_realworld.v1.MyRealworld.DeleteComments:input_type -> api.my_realworld.v1.DeleteCommentsReq
+	35, // 36: api.my_realworld.v1.MyRealworld.FavoriteArticle:input_type -> api.my_realworld.v1.FavoriteArticleReq
+	35, // 37: api.my_realworld.v1.MyRealworld.UnfavoriteArticle:input_type -> api.my_realworld.v1.FavoriteArticleReq
+	36, // 38: api.my_realworld.v1.MyRealworld.GetTags:input_type -> api.my_realworld.v1.GetTagsReq
+	6,  // 39: api.my_realworld.v1.MyRealworld.Auth:output_type -> api.my_realworld.v1.AuthRsp
+	8,  // 40: api.my_realworld.v1.MyRealworld.Register:output_type -> api.my_realworld.v1.RegisterRsp
+	10, // 41: api.my_realworld.v1.MyRealworld.CurrentUser:output_type -> api.my_realworld.v1.CurrentUserRsp
+	12, // 42: api.my_realworld.v1.MyRealworld.UpdateUser:output_type -> api.my_realworld.v1.UpdateUserRsp
+	14, // 43: api.my_realworld.v1.MyRealworld.GetUser:output_type -> api.my_realworld.v1.GetUserRsp
+	16, // 44: api.my_realworld.v1.MyRealworld.FollowUser:output_type -> api.my_realworld.v1.FollowUserRsp
+	16, // 45: api.my_realworld.v1.MyRealworld.UnfollowUser:output_type -> api.my_realworld.v1.FollowUserRsp
+	18, // 46: api.my_realworld.v1.MyRealworld.ArticleList:output_type -> api.my_realworld.v1.ArticleListRsp
+	20, // 47: api.my_realworld.v1.MyRealworld.ArticleFeed:output_type -> api.my_realworld.v1.ArticleFeedRsp
+	22, // 48: api.my_realworld.v1.MyRealworld.GetArticle:output_type -> api.my_realworld.v1.GetArticleRsp
+	24, // 49: api.my_realworld.v1.MyRealworld.CreateArticle:output_type -> api.my_realworld.v1.CreateArticleRsp
+	26, // 50: api.my_realworld.v1.MyRealworld.UpdateArticle:output_type -> api.my_realworld.v1.UpdateArticleRsp
+	28, // 51: api.my_realworld.v1.MyRealworld.DeleteArticle:output_type -> api.my_realworld.v1.DeleteArticleRsp
+	30, // 52: api.my_realworld.v1.MyRealworld.CommentsArticle:output_type -> api.my_realworld.v1.CommentsArticleRsp
+	32, // 53: api.my_realworld.v1.MyRealworld.GetComments:output_type -> api.my_realworld.v1.GetCommentsRsp
+	34, // 54: api.my_realworld.v1.MyRealworld.DeleteComments:output_type -> api.my_realworld.v1.DeleteCommentsRsp
+	30, // 55: api.my_realworld.v1.MyRealworld.FavoriteArticle:output_type -> api.my_realworld.v1.CommentsArticleRsp
+	35, // 56: api.my_realworld.v1.MyRealworld.UnfavoriteArticle:output_type -> api.my_realworld.v1.FavoriteArticleReq
+	37, // 57: api.my_realworld.v1.MyRealworld.GetTags:output_type -> api.my_realworld.v1.GetTagsRsp
+	39, // [39:58] is the sub-list for method output_type
+	20, // [20:39] is the sub-list for method input_type
+	20, // [20:20] is the sub-list for extension type_name
+	20, // [20:20] is the sub-list for extension extendee
+	0,  // [0:20] is the sub-list for field type_name
 }
 
-func init() { file_api_my_realworld_v1_my_realworld_proto_init() }
-func file_api_my_realworld_v1_my_realworld_proto_init() {
-	if File_api_my_realworld_v1_my_realworld_proto != nil {
+func init() { file_my_realworld_v1_my_realworld_proto_init() }
+func file_my_realworld_v1_my_realworld_proto_init() {
+	if File_my_realworld_v1_my_realworld_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*User); i {
 			case 0:
 				return &v.state
@@ -2858,7 +2911,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Profile); i {
 			case 0:
 				return &v.state
@@ -2870,7 +2923,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Author); i {
 			case 0:
 				return &v.state
@@ -2882,7 +2935,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Article); i {
 			case 0:
 				return &v.state
@@ -2894,7 +2947,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Comment); i {
 			case 0:
 				return &v.state
@@ -2906,7 +2959,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AuthReq); i {
 			case 0:
 				return &v.state
@@ -2918,7 +2971,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AuthRsp); i {
 			case 0:
 				return &v.state
@@ -2930,7 +2983,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RegisterReq); i {
 			case 0:
 				return &v.state
@@ -2942,7 +2995,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RegisterRsp); i {
 			case 0:
 				return &v.state
@@ -2954,7 +3007,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CurrentUserReq); i {
 			case 0:
 				return &v.state
@@ -2966,7 +3019,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CurrentUserRsp); i {
 			case 0:
 				return &v.state
@@ -2978,7 +3031,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UpdateUserReq); i {
 			case 0:
 				return &v.state
@@ -2990,7 +3043,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UpdateUserRsp); i {
 			case 0:
 				return &v.state
@@ -3002,7 +3055,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetUserReq); i {
 			case 0:
 				return &v.state
@@ -3014,7 +3067,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetUserRsp); i {
 			case 0:
 				return &v.state
@@ -3026,7 +3079,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*FollowUserReq); i {
 			case 0:
 				return &v.state
@@ -3038,7 +3091,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*FollowUserRsp); i {
 			case 0:
 				return &v.state
@@ -3050,7 +3103,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ArticleListReq); i {
 			case 0:
 				return &v.state
@@ -3062,7 +3115,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ArticleListRsp); i {
 			case 0:
 				return &v.state
@@ -3074,7 +3127,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ArticleFeedReq); i {
 			case 0:
 				return &v.state
@@ -3086,7 +3139,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ArticleFeedRsp); i {
 			case 0:
 				return &v.state
@@ -3098,7 +3151,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetArticleReq); i {
 			case 0:
 				return &v.state
@@ -3110,7 +3163,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetArticleRsp); i {
 			case 0:
 				return &v.state
@@ -3122,7 +3175,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CreateArticleReq); i {
 			case 0:
 				return &v.state
@@ -3134,7 +3187,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CreateArticleRsp); i {
 			case 0:
 				return &v.state
@@ -3146,7 +3199,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UpdateArticleReq); i {
 			case 0:
 				return &v.state
@@ -3158,7 +3211,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UpdateArticleRsp); i {
 			case 0:
 				return &v.state
@@ -3170,7 +3223,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeleteArticleReq); i {
 			case 0:
 				return &v.state
@@ -3182,7 +3235,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeleteArticleRsp); i {
 			case 0:
 				return &v.state
@@ -3194,7 +3247,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CommentsArticleReq); i {
 			case 0:
 				return &v.state
@@ -3206,7 +3259,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CommentsArticleRsp); i {
 			case 0:
 				return &v.state
@@ -3218,7 +3271,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetCommentsReq); i {
 			case 0:
 				return &v.state
@@ -3230,7 +3283,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetCommentsRsp); i {
 			case 0:
 				return &v.state
@@ -3242,7 +3295,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeleteCommentsReq); i {
 			case 0:
 				return &v.state
@@ -3254,7 +3307,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeleteCommentsRsp); i {
 			case 0:
 				return &v.state
@@ -3266,7 +3319,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*FavoriteArticleReq); i {
 			case 0:
 				return &v.state
@@ -3278,7 +3331,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[36].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[36].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetTagsReq); i {
 			case 0:
 				return &v.state
@@ -3290,7 +3343,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[37].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[37].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetTagsRsp); i {
 			case 0:
 				return &v.state
@@ -3302,7 +3355,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[38].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[38].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AuthReq_User); i {
 			case 0:
 				return &v.state
@@ -3314,7 +3367,19 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[39].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[39].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*RegisterReq_User); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_my_realworld_v1_my_realworld_proto_msgTypes[40].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UpdateUserReq_User); i {
 			case 0:
 				return &v.state
@@ -3326,7 +3391,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[40].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[41].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CreateArticleReq_Article); i {
 			case 0:
 				return &v.state
@@ -3338,7 +3403,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[41].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[42].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UpdateArticleReq_Article); i {
 			case 0:
 				return &v.state
@@ -3350,7 +3415,7 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 				return nil
 			}
 		}
-		file_api_my_realworld_v1_my_realworld_proto_msgTypes[42].Exporter = func(v interface{}, i int) interface{} {
+		file_my_realworld_v1_my_realworld_proto_msgTypes[43].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CommentsArticleReq_Comment); i {
 			case 0:
 				return &v.state
@@ -3367,18 +3432,18 @@ func file_api_my_realworld_v1_my_realworld_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_api_my_realworld_v1_my_realworld_proto_rawDesc,
+			RawDescriptor: file_my_realworld_v1_my_realworld_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   43,
+			NumMessages:   44,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_api_my_realworld_v1_my_realworld_proto_goTypes,
-		DependencyIndexes: file_api_my_realworld_v1_my_realworld_proto_depIdxs,
-		MessageInfos:      file_api_my_realworld_v1_my_realworld_proto_msgTypes,
+		GoTypes:           file_my_realworld_v1_my_realworld_proto_goTypes,
+		DependencyIndexes: file_my_realworld_v1_my_realworld_proto_depIdxs,
+		MessageInfos:      file_my_realworld_v1_my_realworld_proto_msgTypes,
 	}.Build()
-	File_api_my_realworld_v1_my_realworld_proto = out.File
-	file_api_my_realworld_v1_my_realworld_proto_rawDesc = nil
-	file_api_my_realworld_v1_my_realworld_proto_goTypes = nil
-	file_api_my_realworld_v1_my_realworld_proto_depIdxs = nil
+	File_my_realworld_v1_my_realworld_proto = out.File
+	file_my_realworld_v1_my_realworld_proto_rawDesc = nil
+	file_my_realworld_v1_my_realworld_proto_goTypes = nil
+	file_my_realworld_v1_my_realworld_proto_depIdxs = nil
 }

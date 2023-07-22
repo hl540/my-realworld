@@ -13,8 +13,8 @@ server:
       - "/api.my_realworld.v1.MyRealworld/GetTags" # 获取tag
 data:
   database:
-    driver: mysql
-    source: root:root@tcp(127.0.0.1:3306)/test
+    driver: sqlite3
+    source: file:ent?mode=memory&cache=shared&_fk=1
   redis:
     addr: 127.0.0.1:6379
     read_timeout: 0.2s

@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-http v2.6.2
 // - protoc             v3.20.0
-// source: api/my_realworld/v1/my_realworld.proto
+// source: my_realworld/v1/my_realworld.proto
 
 package v1
 

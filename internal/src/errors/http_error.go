@@ -1,8 +1,8 @@
 package errors
 
 import (
-	"fmt"
 	"errors"
+	"fmt"
 	stdhttp "net/http"
 
 	"github.com/go-kratos/kratos/v2/transport/http"
@@ -10,7 +10,7 @@ import (
 
 // HTTPError is an HTTP error.
 type HTTPError struct {
-	code int
+	code   int
 	Errors map[string][]string `json:"errors"`
 }
 

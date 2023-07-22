@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             v3.20.0
-// source: api/my_realworld/v1/my_realworld.proto
+// source: my_realworld/v1/my_realworld.proto
 
 package v1
 
@@ -809,5 +809,5 @@ var MyRealworld_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "api/my_realworld/v1/my_realworld.proto",
+	Metadata: "my_realworld/v1/my_realworld.proto",
 }
