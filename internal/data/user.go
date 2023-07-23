@@ -24,11 +24,13 @@ func (u *userRepo) AddUser(ctx context.Context, user *biz.User) (*biz.User, erro
 		SetUsername(user.Username).
 		SetPassword(user.PassWord).
 		SetEmail(user.Email).
-		SetImage(user.Image).Save(ctx)
+		SetImage(user.Image).
+		SetBio(user.Bio).Save(ctx)
 	if err != nil {
 		return nil, err
 	}
 	return &biz.User{
+		Id:       po.ID,
 		Username: po.Username,
 		PassWord: po.Password,
 		Email:    po.Email,
@@ -37,30 +39,67 @@ func (u *userRepo) AddUser(ctx context.Context, user *biz.User) (*biz.User, erro
 }
 
 func (u *userRepo) SaveUser(ctx context.Context, user *biz.User) (*biz.User, error) {
-	po, err := u.data.db.User.Query().Where(entuser.Username(user.Username)).First(ctx)
+	up := u.data.db.User.Update()
+	if user.PassWord != "" {
+		up = up.SetPassword(user.PassWord)
+	}
+	if user.Username != "" {
+		up = up.SetUsername(user.Username)
+	}
+	if user.Email != "" {
+		up = up.SetEmail(user.Email)
+	}
+	up = up.SetImage(user.Image)
+	up = up.SetBio(user.Bio)
+	up = up.Where(entuser.ID(user.Id))
+	_, err := up.Save(ctx)
 	if err != nil {
 		return nil, err
 	}
-	_, err = u.data.db.User.Update().
-		SetPassword(user.PassWord).
-		SetPassword(user.Email).
-		SetPassword(user.Image).
-		Where(entuser.ID(po.ID)).Save(ctx)
-	if err != nil {
-		return nil, err
-	}
-	return user, nil
+	return u.GetUserByID(ctx, user.Id)
 }
 
-func (u *userRepo) GetUser(ctx context.Context, userName string) (*biz.User, error) {
-	po, err := u.data.db.User.Query().Where(entuser.Username(userName)).First(ctx)
+func (u *userRepo) GetUserByUsername(ctx context.Context, username string) (*biz.User, error) {
+	po, err := u.data.db.User.Query().Where(entuser.Username(username)).First(ctx)
 	if err != nil {
 		return nil, err
 	}
 	return &biz.User{
+		Id:       po.ID,
 		Username: po.Username,
 		PassWord: po.Password,
 		Email:    po.Email,
 		Image:    po.Image,
+		Bio:      po.Bio,
+	}, nil
+}
+
+func (u *userRepo) GetUserByEmail(ctx context.Context, email string) (*biz.User, error) {
+	po, err := u.data.db.User.Query().Where(entuser.Email(email)).First(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return &biz.User{
+		Id:       po.ID,
+		Username: po.Username,
+		PassWord: po.Password,
+		Email:    po.Email,
+		Image:    po.Image,
+		Bio:      po.Bio,
+	}, nil
+}
+
+func (u *userRepo) GetUserByID(ctx context.Context, id int) (*biz.User, error) {
+	po, err := u.data.db.User.Query().Where(entuser.ID(id)).First(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return &biz.User{
+		Id:       po.ID,
+		Username: po.Username,
+		PassWord: po.Password,
+		Email:    po.Email,
+		Image:    po.Image,
+		Bio:      po.Bio,
 	}, nil
 }

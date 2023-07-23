@@ -19,6 +19,8 @@ const (
 	FieldEmail = "email"
 	// FieldImage holds the string denoting the image field in the database.
 	FieldImage = "image"
+	// FieldBio holds the string denoting the bio field in the database.
+	FieldBio = "bio"
 	// Table holds the table name of the user in the database.
 	Table = "users"
 )
@@ -30,6 +32,7 @@ var Columns = []string{
 	FieldPassword,
 	FieldEmail,
 	FieldImage,
+	FieldBio,
 }
 
 // ValidColumn reports if the column name is valid (part of the table columns).
@@ -47,6 +50,8 @@ var (
 	UsernameValidator func(string) error
 	// PasswordValidator is a validator for the "password" field. It is called by the builders before save.
 	PasswordValidator func(string) error
+	// EmailValidator is a validator for the "email" field. It is called by the builders before save.
+	EmailValidator func(string) error
 )
 
 // OrderOption defines the ordering options for the User queries.
@@ -75,4 +80,9 @@ func ByEmail(opts ...sql.OrderTermOption) OrderOption {
 // ByImage orders the results by the image field.
 func ByImage(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldImage, opts...).ToFunc()
+}
+
+// ByBio orders the results by the bio field.
+func ByBio(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldBio, opts...).ToFunc()
 }

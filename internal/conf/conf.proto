@@ -25,9 +25,13 @@ message Server {
     string secretKey = 1;
     repeated string whitePath = 2;
   }
+  message PassWord {
+    string secretKey = 1;
+  }
   HTTP http = 1;
   GRPC grpc = 2;
-  JWT jwt = 3; 
+  JWT jwt = 3;
+  PassWord password = 4;
 }
 
 message Data {

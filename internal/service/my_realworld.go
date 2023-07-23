@@ -26,7 +26,34 @@ func NewMyRealworldService(conf *conf.Server, uc *biz.UserUseCase) *MyRealworldS
 }
 
 func (s *MyRealworldService) Auth(ctx context.Context, req *pb.AuthReq) (*pb.AuthRsp, error) {
-	return &pb.AuthRsp{}, nil
+	if req.User.Email == "" || req.User.Password == "" {
+		return nil, errors.NewHTTPError(500, "body", "The username and password are required")
+	}
+	// 查询当前登陆的用户
+	user, err := s.uc.GetUserByEmail(ctx, req.User.Email)
+	if err != nil {
+		return nil, err
+	}
+	// 检查密码
+	pass := util.MakePassword(req.User.Password, s.conf.Password.GetSecretKey())
+	if pass != user.PassWord {
+		return nil, errors.NewHTTPError(500, "body", "Password error")
+	}
+	// 生成token
+	token, err := util.MakeJwtString(map[string]interface{}{
+		util.UserID: user.Id,
+	}, s.conf.Jwt.GetSecretKey())
+	if err != nil {
+		return nil, errors.NewHTTPError(500, "body", err.Error())
+	}
+	return &pb.AuthRsp{
+		User: &pb.User{
+			Email:    user.Email,
+			Token:    token,
+			Username: user.Username,
+			Image:    user.Image,
+		},
+	}, nil
 }
 
 func (s *MyRealworldService) Register(ctx context.Context, req *pb.RegisterReq) (*pb.RegisterRsp, error) {
@@ -42,7 +69,7 @@ func (s *MyRealworldService) Register(ctx context.Context, req *pb.RegisterReq) 
 	}
 	// 生成jwt
 	token, err := util.MakeJwtString(map[string]interface{}{
-		util.UserName: user.Username,
+		util.UserID: user.Id,
 	}, s.conf.Jwt.GetSecretKey())
 	if err != nil {
 		return nil, errors.NewHTTPError(500, "body", err.Error())
@@ -58,28 +85,63 @@ func (s *MyRealworldService) Register(ctx context.Context, req *pb.RegisterReq) 
 }
 
 func (s *MyRealworldService) CurrentUser(ctx context.Context, req *pb.CurrentUserReq) (*pb.CurrentUserRsp, error) {
-	userName := util.GetUserNameFromContext(ctx)
-	if userName == "" {
+	userId := util.GetUserID(ctx)
+	if userId == 0 {
 		return nil, errors.NewHTTPError(401, "body", "there is no jwt token")
 	}
-	user, err := s.uc.GetUser(ctx, userName)
+	user, err := s.uc.CurrentUser(ctx, userId)
 	if err != nil {
 		return nil, err
 	}
 	return &pb.CurrentUserRsp{User: &pb.User{
 		Email:    user.Email,
-		Token:    util.ParseJwtToken(ctx),
+		Token:    util.ParseTokenStr(ctx),
 		Username: user.Username,
 		Image:    user.Image,
 	}}, nil
 }
 
 func (s *MyRealworldService) UpdateUser(ctx context.Context, req *pb.UpdateUserReq) (*pb.UpdateUserRsp, error) {
-	return &pb.UpdateUserRsp{}, nil
+	// 获取当前用户email
+	userId := util.GetUserID(ctx)
+	if userId == 0 {
+		return nil, errors.NewHTTPError(401, "body", "there is no jwt token")
+	}
+	user, err := s.uc.UpdateUser(ctx, &biz.User{
+		Id:       userId,
+		Username: req.User.Username,
+		PassWord: req.User.Password,
+		Email:    req.User.Email,
+		Image:    req.User.Image,
+		Bio:      req.User.Bio,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return &pb.UpdateUserRsp{User: &pb.User{
+		Email:    user.Email,
+		Token:    util.ParseTokenStr(ctx),
+		Username: user.Username,
+		Image:    user.Image,
+		Bio:      user.Bio,
+	}}, nil
 }
 
 func (s *MyRealworldService) GetUser(ctx context.Context, req *pb.GetUserReq) (*pb.GetUserRsp, error) {
-	return &pb.GetUserRsp{}, nil
+	if req.Username == "" {
+		return nil, errors.NewHTTPError(500, "body", "The username are required")
+	}
+	// 查询当前登陆的用户
+	user, err := s.uc.GetUserByUsername(ctx, req.Username)
+	if err != nil {
+		return nil, err
+	}
+	return &pb.GetUserRsp{Profile: &pb.Profile{
+		Username:  user.Username,
+		Bio:       user.Bio,
+		Image:     user.Image,
+		Following: false,
+	}}, nil
 }
 
 func (s *MyRealworldService) FollowUser(ctx context.Context, req *pb.FollowUserReq) (*pb.FollowUserRsp, error) {

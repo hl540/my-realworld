@@ -2,40 +2,42 @@ package util
 
 import (
 	"context"
+	"crypto/md5"
 	"fmt"
 	"github.com/go-kratos/kratos/v2/transport"
 	"github.com/golang-jwt/jwt/v4"
+	"io"
 	"strings"
 )
 
-type authKey struct{}
-
-// NewContext put auth info into context
-func NewContext(ctx context.Context, info jwt.Claims) context.Context {
-	return context.WithValue(ctx, authKey{}, info)
+// SetContext 设置上下文value
+func SetContext(ctx context.Context, key interface{}, value interface{}) context.Context {
+	return context.WithValue(ctx, key, value)
 }
 
-// FromContext extract auth info from context
-func FromContext(ctx context.Context) (token jwt.MapClaims, ok bool) {
-	token, ok = ctx.Value(authKey{}).(jwt.MapClaims)
-	return
+// GetContext 获取上下文value
+func GetContext(ctx context.Context, key interface{}) interface{} {
+	return ctx.Value(key)
 }
 
-const UserName = "username"
+const UserID = "user_id"
 
-func GetUserNameFromContext(ctx context.Context) string {
-	auth, ok := FromContext(ctx)
+type AuthKey struct{}
+
+// GetUserID 通过上下文获取username
+func GetUserID(ctx context.Context) int {
+	data, ok := GetContext(ctx, AuthKey{}).(jwt.MapClaims)
 	if !ok {
-		return ""
+		return 0
 	}
-	userName, ok := auth[UserName]
-	if !ok {
-		return ""
+	if _, ok := data[UserID]; !ok {
+		return 0
 	}
-	return userName.(string)
+	return int(data[UserID].(float64))
 }
 
-func ParseJwtToken(ctx context.Context) string {
+// ParseTokenStr 从header中解析token
+func ParseTokenStr(ctx context.Context) string {
 	if tr, ok := transport.FromServerContext(ctx); ok {
 		// 解析header
 		authStr := tr.RequestHeader().Get("Authorization")
@@ -48,8 +50,8 @@ func ParseJwtToken(ctx context.Context) string {
 	return ""
 }
 
-// ParseJwt 解析jwt
-func ParseJwt(tokenStr string, secretKey string) (jwt.MapClaims, error) {
+// ParseJwtStr 解析jwt
+func ParseJwtStr(tokenStr string, secretKey string) (jwt.MapClaims, error) {
 	// 解析jwt内容
 	token, err := jwt.Parse(tokenStr, func(token *jwt.Token) (interface{}, error) {
 		// 验证jwt算法
@@ -73,4 +75,11 @@ func ParseJwt(tokenStr string, secretKey string) (jwt.MapClaims, error) {
 func MakeJwtString(data jwt.MapClaims, secretKey string) (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, data)
 	return token.SignedString([]byte(secretKey))
+}
+
+// MakePassword 生成加密后的密码
+func MakePassword(oldPassword string, secretKey string) string {
+	h := md5.New()
+	io.WriteString(h, oldPassword+secretKey)
+	return string(h.Sum(nil))
 }

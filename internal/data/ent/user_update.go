@@ -51,6 +51,12 @@ func (uu *UserUpdate) SetImage(s string) *UserUpdate {
 	return uu
 }
 
+// SetBio sets the "bio" field.
+func (uu *UserUpdate) SetBio(s string) *UserUpdate {
+	uu.mutation.SetBio(s)
+	return uu
+}
+
 // Mutation returns the UserMutation object of the builder.
 func (uu *UserUpdate) Mutation() *UserMutation {
 	return uu.mutation
@@ -95,6 +101,11 @@ func (uu *UserUpdate) check() error {
 			return &ValidationError{Name: "password", err: fmt.Errorf(`ent: validator failed for field "User.password": %w`, err)}
 		}
 	}
+	if v, ok := uu.mutation.Email(); ok {
+		if err := user.EmailValidator(v); err != nil {
+			return &ValidationError{Name: "email", err: fmt.Errorf(`ent: validator failed for field "User.email": %w`, err)}
+		}
+	}
 	return nil
 }
 
@@ -121,6 +132,9 @@ func (uu *UserUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	}
 	if value, ok := uu.mutation.Image(); ok {
 		_spec.SetField(user.FieldImage, field.TypeString, value)
+	}
+	if value, ok := uu.mutation.Bio(); ok {
+		_spec.SetField(user.FieldBio, field.TypeString, value)
 	}
 	if n, err = sqlgraph.UpdateNodes(ctx, uu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
@@ -163,6 +177,12 @@ func (uuo *UserUpdateOne) SetEmail(s string) *UserUpdateOne {
 // SetImage sets the "image" field.
 func (uuo *UserUpdateOne) SetImage(s string) *UserUpdateOne {
 	uuo.mutation.SetImage(s)
+	return uuo
+}
+
+// SetBio sets the "bio" field.
+func (uuo *UserUpdateOne) SetBio(s string) *UserUpdateOne {
+	uuo.mutation.SetBio(s)
 	return uuo
 }
 
@@ -223,6 +243,11 @@ func (uuo *UserUpdateOne) check() error {
 			return &ValidationError{Name: "password", err: fmt.Errorf(`ent: validator failed for field "User.password": %w`, err)}
 		}
 	}
+	if v, ok := uuo.mutation.Email(); ok {
+		if err := user.EmailValidator(v); err != nil {
+			return &ValidationError{Name: "email", err: fmt.Errorf(`ent: validator failed for field "User.email": %w`, err)}
+		}
+	}
 	return nil
 }
 
@@ -266,6 +291,9 @@ func (uuo *UserUpdateOne) sqlSave(ctx context.Context) (_node *User, err error) 
 	}
 	if value, ok := uuo.mutation.Image(); ok {
 		_spec.SetField(user.FieldImage, field.TypeString, value)
+	}
+	if value, ok := uuo.mutation.Bio(); ok {
+		_spec.SetField(user.FieldBio, field.TypeString, value)
 	}
 	_node = &User{config: uuo.config}
 	_spec.Assign = _node.assignValues

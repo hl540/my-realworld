@@ -36,6 +36,7 @@ type UserMutation struct {
 	password      *string
 	email         *string
 	image         *string
+	bio           *string
 	clearedFields map[string]struct{}
 	done          bool
 	oldValue      func(context.Context) (*User, error)
@@ -284,6 +285,42 @@ func (m *UserMutation) ResetImage() {
 	m.image = nil
 }
 
+// SetBio sets the "bio" field.
+func (m *UserMutation) SetBio(s string) {
+	m.bio = &s
+}
+
+// Bio returns the value of the "bio" field in the mutation.
+func (m *UserMutation) Bio() (r string, exists bool) {
+	v := m.bio
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldBio returns the old "bio" field's value of the User entity.
+// If the User object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *UserMutation) OldBio(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldBio is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldBio requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldBio: %w", err)
+	}
+	return oldValue.Bio, nil
+}
+
+// ResetBio resets all changes to the "bio" field.
+func (m *UserMutation) ResetBio() {
+	m.bio = nil
+}
+
 // Where appends a list predicates to the UserMutation builder.
 func (m *UserMutation) Where(ps ...predicate.User) {
 	m.predicates = append(m.predicates, ps...)
@@ -318,7 +355,7 @@ func (m *UserMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *UserMutation) Fields() []string {
-	fields := make([]string, 0, 4)
+	fields := make([]string, 0, 5)
 	if m.username != nil {
 		fields = append(fields, user.FieldUsername)
 	}
@@ -330,6 +367,9 @@ func (m *UserMutation) Fields() []string {
 	}
 	if m.image != nil {
 		fields = append(fields, user.FieldImage)
+	}
+	if m.bio != nil {
+		fields = append(fields, user.FieldBio)
 	}
 	return fields
 }
@@ -347,6 +387,8 @@ func (m *UserMutation) Field(name string) (ent.Value, bool) {
 		return m.Email()
 	case user.FieldImage:
 		return m.Image()
+	case user.FieldBio:
+		return m.Bio()
 	}
 	return nil, false
 }
@@ -364,6 +406,8 @@ func (m *UserMutation) OldField(ctx context.Context, name string) (ent.Value, er
 		return m.OldEmail(ctx)
 	case user.FieldImage:
 		return m.OldImage(ctx)
+	case user.FieldBio:
+		return m.OldBio(ctx)
 	}
 	return nil, fmt.Errorf("unknown User field %s", name)
 }
@@ -400,6 +444,13 @@ func (m *UserMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetImage(v)
+		return nil
+	case user.FieldBio:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetBio(v)
 		return nil
 	}
 	return fmt.Errorf("unknown User field %s", name)
@@ -461,6 +512,9 @@ func (m *UserMutation) ResetField(name string) error {
 		return nil
 	case user.FieldImage:
 		m.ResetImage()
+		return nil
+	case user.FieldBio:
+		m.ResetBio()
 		return nil
 	}
 	return fmt.Errorf("unknown User field %s", name)

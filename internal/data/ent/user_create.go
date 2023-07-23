@@ -43,6 +43,12 @@ func (uc *UserCreate) SetImage(s string) *UserCreate {
 	return uc
 }
 
+// SetBio sets the "bio" field.
+func (uc *UserCreate) SetBio(s string) *UserCreate {
+	uc.mutation.SetBio(s)
+	return uc
+}
+
 // Mutation returns the UserMutation object of the builder.
 func (uc *UserCreate) Mutation() *UserMutation {
 	return uc.mutation
@@ -96,8 +102,16 @@ func (uc *UserCreate) check() error {
 	if _, ok := uc.mutation.Email(); !ok {
 		return &ValidationError{Name: "email", err: errors.New(`ent: missing required field "User.email"`)}
 	}
+	if v, ok := uc.mutation.Email(); ok {
+		if err := user.EmailValidator(v); err != nil {
+			return &ValidationError{Name: "email", err: fmt.Errorf(`ent: validator failed for field "User.email": %w`, err)}
+		}
+	}
 	if _, ok := uc.mutation.Image(); !ok {
 		return &ValidationError{Name: "image", err: errors.New(`ent: missing required field "User.image"`)}
+	}
+	if _, ok := uc.mutation.Bio(); !ok {
+		return &ValidationError{Name: "bio", err: errors.New(`ent: missing required field "User.bio"`)}
 	}
 	return nil
 }
@@ -140,6 +154,10 @@ func (uc *UserCreate) createSpec() (*User, *sqlgraph.CreateSpec) {
 	if value, ok := uc.mutation.Image(); ok {
 		_spec.SetField(user.FieldImage, field.TypeString, value)
 		_node.Image = value
+	}
+	if value, ok := uc.mutation.Bio(); ok {
+		_spec.SetField(user.FieldBio, field.TypeString, value)
+		_node.Bio = value
 	}
 	return _node, _spec
 }

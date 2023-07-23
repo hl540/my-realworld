@@ -13,13 +13,13 @@ func NewJwt(jwtKey string) middleware.Middleware {
 		return func(ctx context.Context, req interface{}) (interface{}, error) {
 			if _, ok := transport.FromServerContext(ctx); ok {
 				// 解析header中的token
-				jwtStr := util.ParseJwtToken(ctx)
+				jwtStr := util.ParseTokenStr(ctx)
 				// 解析jwt
-				tokenInfo, err := util.ParseJwt(jwtStr, jwtKey)
+				tokenInfo, err := util.ParseJwtStr(jwtStr, jwtKey)
 				if err != nil {
 					return nil, errors.NewHTTPError(401, "body", err.Error())
 				}
-				ctx = util.NewContext(ctx, tokenInfo)
+				ctx = util.SetContext(ctx, util.AuthKey{}, tokenInfo)
 				return handler(ctx, req)
 			}
 			return handler(ctx, req)

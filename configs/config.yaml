@@ -11,10 +11,12 @@ server:
       - "/api.my_realworld.v1.MyRealworld/Auth" # 鉴权
       - "/api.my_realworld.v1.MyRealworld/Register" # 注册
       - "/api.my_realworld.v1.MyRealworld/GetTags" # 获取tag
+  password:
+    secretKey: "123456789"
 data:
   database:
     driver: sqlite3
-    source: file:ent?mode=memory&cache=shared&_fk=1
+    source: file:./db.db?cache=shared&_fk=1
   redis:
     addr: 127.0.0.1:6379
     read_timeout: 0.2s

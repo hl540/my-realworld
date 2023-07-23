@@ -136,6 +136,7 @@ message User {
 	string token = 2;
 	string username = 3;
 	string image = 4;
+	string bio = 5;
 }
 
 message Profile {

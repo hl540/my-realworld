@@ -636,5 +636,7 @@ components:
                     type: string
                 image:
                     type: string
+                bio:
+                    type: string
 tags:
     - name: MyRealworld
