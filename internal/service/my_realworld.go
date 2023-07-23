@@ -40,9 +40,11 @@ func (s *MyRealworldService) Auth(ctx context.Context, req *pb.AuthReq) (*pb.Aut
 		return nil, errors.NewHTTPError(500, "body", "Password error")
 	}
 	// 生成token
-	token, err := util.MakeJwtString(map[string]interface{}{
-		util.UserID: user.Id,
-	}, s.conf.Jwt.GetSecretKey())
+	token, err := util.NewJwtByData(s.conf.Jwt.GetSecretKey(), map[string]interface{}{
+		util.UserID:    user.Id,
+		util.UserName:  user.Username,
+		util.UserEmail: user.Email,
+	}).Token()
 	if err != nil {
 		return nil, errors.NewHTTPError(500, "body", err.Error())
 	}
@@ -68,9 +70,11 @@ func (s *MyRealworldService) Register(ctx context.Context, req *pb.RegisterReq) 
 		return nil, err
 	}
 	// 生成jwt
-	token, err := util.MakeJwtString(map[string]interface{}{
-		util.UserID: user.Id,
-	}, s.conf.Jwt.GetSecretKey())
+	token, err := util.NewJwtByData(s.conf.Jwt.GetSecretKey(), map[string]interface{}{
+		util.UserID:    user.Id,
+		util.UserName:  user.Username,
+		util.UserEmail: user.Email,
+	}).Token()
 	if err != nil {
 		return nil, errors.NewHTTPError(500, "body", err.Error())
 	}
@@ -85,11 +89,11 @@ func (s *MyRealworldService) Register(ctx context.Context, req *pb.RegisterReq) 
 }
 
 func (s *MyRealworldService) CurrentUser(ctx context.Context, req *pb.CurrentUserReq) (*pb.CurrentUserRsp, error) {
-	userId := util.GetUserID(ctx)
-	if userId == 0 {
+	userInfo := util.GetUserInfo(ctx)
+	if userInfo == nil {
 		return nil, errors.NewHTTPError(401, "body", "there is no jwt token")
 	}
-	user, err := s.uc.CurrentUser(ctx, userId)
+	user, err := s.uc.CurrentUser(ctx, userInfo.UserID)
 	if err != nil {
 		return nil, err
 	}
@@ -103,12 +107,12 @@ func (s *MyRealworldService) CurrentUser(ctx context.Context, req *pb.CurrentUse
 
 func (s *MyRealworldService) UpdateUser(ctx context.Context, req *pb.UpdateUserReq) (*pb.UpdateUserRsp, error) {
 	// 获取当前用户email
-	userId := util.GetUserID(ctx)
-	if userId == 0 {
+	userInfo := util.GetUserInfo(ctx)
+	if userInfo == nil {
 		return nil, errors.NewHTTPError(401, "body", "there is no jwt token")
 	}
 	user, err := s.uc.UpdateUser(ctx, &biz.User{
-		Id:       userId,
+		Id:       userInfo.UserID,
 		Username: req.User.Username,
 		PassWord: req.User.Password,
 		Email:    req.User.Email,
