@@ -10,24 +10,30 @@ import (
 
 type User struct {
 	Username string
-	PassWord string
+	Password string
 	Email    string
 	Image    string
 	Bio      string
-	Id       int
+	Id       uint
 }
 
 type UserRepo interface {
-	// AddUser 新增用户
-	AddUser(ctx context.Context, user *User) (*User, error)
-	// SaveUser 保存用户信息
-	SaveUser(ctx context.Context, user *User) (*User, error)
-	// GetUserByUsername 获取用户信息
-	GetUserByUsername(ctx context.Context, username string) (*User, error)
-	// GetUserByEmail 获取用户信息
-	GetUserByEmail(ctx context.Context, email string) (*User, error)
-	// GetUserByID 获取用户信息
-	GetUserByID(ctx context.Context, id int) (*User, error)
+	// Add 新增用户
+	Add(ctx context.Context, user *User) (*User, error)
+	// Save 保存用户信息
+	Save(ctx context.Context, user *User) (*User, error)
+	// GetByUsername 获取用户信息
+	GetByUsername(ctx context.Context, username string) (*User, error)
+	// GetByEmail 获取用户信息
+	GetByEmail(ctx context.Context, email string) (*User, error)
+	// GetByID 获取用户信息
+	GetByID(ctx context.Context, id interface{}) (*User, error)
+	// AdditionalToArticle 将user附加到article
+	AdditionalToArticle(ctx context.Context, articles []*Article) error
+	// AddFollow 关注用户
+	AddFollow(ctx context.Context, user *User, targetUser *User) error
+	// DelFollow 取消关注
+	DelFollow(ctx context.Context, user *User, targetUser *User) error
 }
 
 type UserUseCase struct {
@@ -44,25 +50,43 @@ func NewUserUseCase(conf *conf.Server, userRepo UserRepo, logger log.Logger) *Us
 	}
 }
 
-// CreateUser 创建用户
-func (uu *UserUseCase) CreateUser(ctx context.Context, user *User) (*User, error) {
+// Register 创建用户
+func (uu *UserUseCase) Register(ctx context.Context, user *User) (*User, string, error) {
 	// 对密码进行加密
-	user.PassWord = util.MakePassword(user.PassWord, uu.conf.Password.GetSecretKey())
+	user.Password = util.MD5(user.Password + uu.conf.Password.GetSecretKey())
 	// 调用data层持久化
-	user, err := uu.userRepo.AddUser(ctx, user)
+	user, err := uu.userRepo.Add(ctx, user)
 	if err != nil {
-		return nil, errors.NewHTTPError(500, "body", err.Error())
+		return nil, "", errors.NewHTTPError(500, "body", err.Error())
 	}
-	return user, nil
+	// 生成token
+	token, err := util.NewJwtByData(uu.conf.Jwt.GetSecretKey(), map[string]interface{}{
+		util.UserID:    user.Id,
+		util.UserName:  user.Username,
+		util.UserEmail: user.Email,
+	}).Token()
+	if err != nil {
+		return nil, "", errors.NewHTTPError(500, "body", err.Error())
+	}
+	return user, token, nil
 }
 
 // UpdateUser 更新用户信息
-func (uu *UserUseCase) UpdateUser(ctx context.Context, user *User) (*User, error) {
-	if user.PassWord != "" {
-		// 对密码进行加密
-		user.PassWord = util.MakePassword(user.PassWord, uu.conf.Password.GetSecretKey())
+func (uu *UserUseCase) UpdateUser(ctx context.Context, newUser *User) (*User, error) {
+	// 获取当前用户
+	userInfo := util.GetUserInfo(ctx)
+	if userInfo == nil {
+		return nil, errors.NewHTTPError(401, "body", "there is no jwt token")
 	}
-	user, err := uu.userRepo.SaveUser(ctx, user)
+	newUser.Id = userInfo.UserID
+
+	// 对密码进行加密
+	if newUser.Password != "" {
+		newUser.Password = util.MD5(newUser.Password + uu.conf.Password.GetSecretKey())
+	}
+
+	// 保存用户信息
+	user, err := uu.userRepo.Save(ctx, newUser)
 	if err != nil {
 		return nil, errors.NewHTTPError(500, "body", err.Error())
 	}
@@ -71,26 +95,89 @@ func (uu *UserUseCase) UpdateUser(ctx context.Context, user *User) (*User, error
 
 // GetUserByUsername 获取用户信息
 func (uu *UserUseCase) GetUserByUsername(ctx context.Context, username string) (*User, error) {
-	user, err := uu.userRepo.GetUserByUsername(ctx, username)
+	user, err := uu.userRepo.GetByUsername(ctx, username)
 	if err != nil {
 		return nil, errors.NewHTTPError(500, "body", err.Error())
 	}
 	return user, nil
 }
 
-// GetUserByEmail 获取用户信息
-func (uu *UserUseCase) GetUserByEmail(ctx context.Context, email string) (*User, error) {
-	user, err := uu.userRepo.GetUserByEmail(ctx, email)
+// Login 用户登陆
+func (uu *UserUseCase) Login(ctx context.Context, email, password string) (*User, string, error) {
+	// 查询当前要登陆的用户信息
+	user, err := uu.userRepo.GetByEmail(ctx, email)
+	if err != nil {
+		return nil, "", errors.NewHTTPError(500, "body", err.Error())
+	}
+
+	// 检查密码
+	pass := util.MD5(password + uu.conf.Password.GetSecretKey())
+	if pass != user.Password {
+		return nil, "", errors.NewHTTPError(500, "body", "Password error")
+	}
+
+	// 生成token
+	token, err := util.NewJwtByData(uu.conf.Jwt.GetSecretKey(), map[string]interface{}{
+		util.UserID:    user.Id,
+		util.UserName:  user.Username,
+		util.UserEmail: user.Email,
+	}).Token()
+	if err != nil {
+		return nil, "", errors.NewHTTPError(500, "body", err.Error())
+	}
+	return user, token, nil
+}
+
+// CurrentUser 获取当前登陆用户
+func (uu *UserUseCase) CurrentUser(ctx context.Context) (*User, error) {
+	// 获取当前用户
+	userInfo := util.GetUserInfo(ctx)
+	if userInfo == nil {
+		return nil, errors.NewHTTPError(401, "body", "there is no jwt token")
+	}
+	user, err := uu.userRepo.GetByID(ctx, userInfo.UserID)
 	if err != nil {
 		return nil, errors.NewHTTPError(500, "body", err.Error())
 	}
 	return user, nil
 }
 
-func (uu *UserUseCase) CurrentUser(ctx context.Context, id int) (*User, error) {
-	user, err := uu.userRepo.GetUserByID(ctx, id)
+// FollowUser 关注用户
+func (uu *UserUseCase) FollowUser(ctx context.Context, username string) (*User, error) {
+	// 获取当前用户
+	userInfo := util.GetUserInfo(ctx)
+	if userInfo == nil {
+		return nil, errors.NewHTTPError(401, "body", "there is no jwt token")
+	}
+	// 获取目标用户
+	targetUser, err := uu.userRepo.GetByUsername(ctx, username)
 	if err != nil {
 		return nil, errors.NewHTTPError(500, "body", err.Error())
 	}
-	return user, nil
+	// 添加关注
+	err = uu.userRepo.AddFollow(ctx, &User{Id: userInfo.UserID}, targetUser)
+	if err != nil {
+		return nil, errors.NewHTTPError(500, "body", err.Error())
+	}
+	return targetUser, nil
+}
+
+// UnfollowUser 关注用户
+func (uu *UserUseCase) UnfollowUser(ctx context.Context, username string) (*User, error) {
+	// 获取当前用户
+	userInfo := util.GetUserInfo(ctx)
+	if userInfo == nil {
+		return nil, errors.NewHTTPError(401, "body", "there is no jwt token")
+	}
+	// 获取目标用户
+	targetUser, err := uu.userRepo.GetByUsername(ctx, username)
+	if err != nil {
+		return nil, errors.NewHTTPError(500, "body", err.Error())
+	}
+	// 添加关注
+	err = uu.userRepo.DelFollow(ctx, &User{Id: userInfo.UserID}, targetUser)
+	if err != nil {
+		return nil, errors.NewHTTPError(500, "body", err.Error())
+	}
+	return targetUser, nil
 }

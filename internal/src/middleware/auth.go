@@ -23,7 +23,7 @@ func NewJwt(secretKey string) middleware.Middleware {
 					return nil, errors.NewHTTPError(401, "body", err.Error())
 				}
 				ctx = util.SetContext(ctx, util.AuthKey{}, &util.UserInfo{
-					UserID:    jwt.GetInt(util.UserID),
+					UserID:    uint(jwt.GetInt(util.UserID)),
 					UserName:  jwt.GetString(util.UserName),
 					UserEmail: jwt.GetString(util.UserEmail),
 				})

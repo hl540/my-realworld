@@ -1,32 +1,43 @@
 package data
 
 import (
-	"context"
-	"github.com/hl540/my-realworld/internal/conf"
-	"github.com/hl540/my-realworld/internal/data/ent"
-	"github.com/hl540/my-realworld/internal/data/ent/migrate"
-
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/google/wire"
+	"github.com/hl540/my-realworld/internal/conf"
 	_ "github.com/mattn/go-sqlite3"
+	"gorm.io/driver/sqlite"
+	"gorm.io/gorm"
+	gormlogger "gorm.io/gorm/logger"
 )
 
 // ProviderSet is data providers.
-var ProviderSet = wire.NewSet(NewData, NewEntClient, NewUserRepo)
+var ProviderSet = wire.NewSet(NewData, NewGormClient, NewUserRepo, NewArticleRepo, NewTagRepo)
 
 // Data .
 type Data struct {
-	db  *ent.Client
+	db  *gorm.DB
 	log *log.Helper
 }
 
-func NewEntClient(conf *conf.Data, logger log.Logger) *ent.Client {
+func NewGormClient(conf *conf.Data, logger log.Logger) *gorm.DB {
 	log := log.NewHelper(logger)
-	client, err := ent.Open(conf.Database.Driver, conf.Database.Source)
+	client, err := gorm.Open(
+		sqlite.Open(conf.Database.Driver),
+		&gorm.Config{
+			Logger: gormlogger.Default.LogMode(gormlogger.Info),
+		},
+	)
 	if err != nil {
 		log.Fatalf("failed opening connection to db: %v", err)
 	}
-	err = client.Schema.Create(context.Background(), migrate.WithForeignKeys(false))
+
+	err = client.AutoMigrate(
+		&User{},
+		&Follow{},
+		&Article{},
+		&Tag{},
+		&Favorite{},
+	)
 	if err != nil {
 		log.Fatalf("failed creating schema resources: %v", err)
 	}
@@ -34,12 +45,12 @@ func NewEntClient(conf *conf.Data, logger log.Logger) *ent.Client {
 }
 
 // NewData .
-func NewData(endClient *ent.Client, logger log.Logger) (*Data, func(), error) {
+func NewData(gormClient *gorm.DB, logger log.Logger) (*Data, func(), error) {
 	cleanup := func() {
 		log.NewHelper(logger).Info("closing the data resources")
 	}
 	return &Data{
-		db:  endClient,
+		db:  gormClient,
 		log: log.NewHelper(logger),
 	}, cleanup, nil
 }

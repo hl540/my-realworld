@@ -650,7 +650,7 @@ var file_conf_conf_proto_goTypes = []interface{}{
 	(*Server_HTTP)(nil),         // 3: kratos.api.Server.HTTP
 	(*Server_GRPC)(nil),         // 4: kratos.api.Server.GRPC
 	(*Server_JWT)(nil),          // 5: kratos.api.Server.JWT
-	(*Server_PassWord)(nil),     // 6: kratos.api.Server.PassWord
+	(*Server_PassWord)(nil),     // 6: kratos.api.Server.Password
 	(*Data_Database)(nil),       // 7: kratos.api.Data.Database
 	(*Data_Redis)(nil),          // 8: kratos.api.Data.Redis
 	(*durationpb.Duration)(nil), // 9: google.protobuf.Duration
@@ -661,7 +661,7 @@ var file_conf_conf_proto_depIdxs = []int32{
 	3,  // 2: kratos.api.Server.http:type_name -> kratos.api.Server.HTTP
 	4,  // 3: kratos.api.Server.grpc:type_name -> kratos.api.Server.GRPC
 	5,  // 4: kratos.api.Server.jwt:type_name -> kratos.api.Server.JWT
-	6,  // 5: kratos.api.Server.password:type_name -> kratos.api.Server.PassWord
+	6,  // 5: kratos.api.Server.password:type_name -> kratos.api.Server.Password
 	7,  // 6: kratos.api.Data.database:type_name -> kratos.api.Data.Database
 	8,  // 7: kratos.api.Data.redis:type_name -> kratos.api.Data.Redis
 	9,  // 8: kratos.api.Server.HTTP.timeout:type_name -> google.protobuf.Duration

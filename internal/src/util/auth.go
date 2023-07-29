@@ -13,7 +13,7 @@ const UserEmail = "user_email"
 type AuthKey struct{}
 
 type UserInfo struct {
-	UserID    int
+	UserID    uint
 	UserName  string
 	UserEmail string
 }

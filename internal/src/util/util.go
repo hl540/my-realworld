@@ -3,6 +3,7 @@ package util
 import (
 	"context"
 	"crypto/md5"
+	"encoding/hex"
 	"io"
 )
 
@@ -16,9 +17,16 @@ func GetContext(ctx context.Context, key interface{}) interface{} {
 	return ctx.Value(key)
 }
 
-// MakePassword 生成加密后的密码
-func MakePassword(oldPassword string, secretKey string) string {
-	h := md5.New()
-	io.WriteString(h, oldPassword+secretKey)
-	return string(h.Sum(nil))
+func MD5(str string) string {
+	w := md5.New()
+	io.WriteString(w, str)
+	bw := w.Sum(nil)
+	return hex.EncodeToString(bw)
+}
+
+func IntDefault(i int, d int) int {
+	if i == 0 {
+		return d
+	}
+	return i
 }

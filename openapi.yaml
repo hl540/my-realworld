@@ -426,7 +426,7 @@ components:
                 favoritesCount:
                     type: integer
                     format: uint64
-                article:
+                author:
                     $ref: '#/components/schemas/api.my_realworld.v1.Author'
         api.my_realworld.v1.ArticleFeedRsp:
             type: object
@@ -502,7 +502,22 @@ components:
                     $ref: '#/components/schemas/api.my_realworld.v1.Comment'
         api.my_realworld.v1.CreateArticleReq:
             type: object
-            properties: {}
+            properties:
+                article:
+                    $ref: '#/components/schemas/api.my_realworld.v1.CreateArticleReq_Article'
+        api.my_realworld.v1.CreateArticleReq_Article:
+            type: object
+            properties:
+                title:
+                    type: string
+                description:
+                    type: string
+                body:
+                    type: string
+                tagList:
+                    type: array
+                    items:
+                        type: string
         api.my_realworld.v1.CreateArticleRsp:
             type: object
             properties:
@@ -533,7 +548,7 @@ components:
             type: object
             properties:
                 profile:
-                    $ref: '#/components/schemas/api.my_realworld.v1.Profile'
+                    $ref: '#/components/schemas/api.my_realworld.v1.Author'
         api.my_realworld.v1.GetArticleRsp:
             type: object
             properties:
@@ -557,18 +572,7 @@ components:
             type: object
             properties:
                 profile:
-                    $ref: '#/components/schemas/api.my_realworld.v1.Profile'
-        api.my_realworld.v1.Profile:
-            type: object
-            properties:
-                username:
-                    type: string
-                bio:
-                    type: string
-                image:
-                    type: string
-                following:
-                    type: boolean
+                    $ref: '#/components/schemas/api.my_realworld.v1.Author'
         api.my_realworld.v1.RegisterReq:
             type: object
             properties:

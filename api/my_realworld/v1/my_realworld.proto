@@ -139,13 +139,6 @@ message User {
 	string bio = 5;
 }
 
-message Profile {
-	string username = 1;
-	string bio = 2;
-	string image = 3;
-	bool following = 4;
-}
-
 message Author {
 	string username = 1;
 	string bio = 2;
@@ -155,15 +148,15 @@ message Author {
 
 message Article {
 	string slug = 1;
-    string title = 2;
-    string description = 3;
-    string body = 4;
-    repeated string tagList = 5; 
-    string createdAt = 6;
-    string updatedAt = 7;
-    bool favorited = 8;
-    uint64 favoritesCount = 9;
-	Author article = 10;
+	string title = 2;
+	string description = 3;
+	string body = 4;
+	repeated string tagList = 5;
+	string createdAt = 6;
+	string updatedAt = 7;
+	bool favorited = 8;
+	uint64 favoritesCount = 9;
+	Author author = 10;
 }
 
 message Comment {
@@ -227,7 +220,7 @@ message GetUserReq {
 }
 
 message GetUserRsp {
-	Profile profile = 1;
+	Author profile = 1;
 }
 
 message FollowUserReq {
@@ -235,7 +228,7 @@ message FollowUserReq {
 }
 
 message FollowUserRsp {
-	Profile profile = 1;
+	Author profile = 1;
 }
 
 message ArticleListReq {
@@ -276,6 +269,7 @@ message CreateArticleReq {
 		string body = 3;
 		repeated string tagList = 4;
 	}
+	Article article = 1;
 }
 
 message CreateArticleRsp {
