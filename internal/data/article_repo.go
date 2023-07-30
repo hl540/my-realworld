@@ -103,3 +103,16 @@ func (a *articleRepo) List(ctx context.Context, tagName, favoriter, author strin
 	}
 	return result, count, nil
 }
+
+func (a *articleRepo) AllTag(ctx context.Context) ([]string, error) {
+	tags := make([]*Tag, 0)
+	err := a.db.WithContext(ctx).Model(Tag{}).Group("name").Find(&tags).Error
+	if err != nil {
+		return nil, err
+	}
+	result := make([]string, 0)
+	for _, tag := range tags {
+		result = append(result, tag.Name)
+	}
+	return result, nil
+}

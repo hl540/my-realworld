@@ -27,6 +27,8 @@ type ArticleRepo interface {
 	Add(ctx context.Context, article *Article) error
 	// List 获取文章列表
 	List(ctx context.Context, tagName, favoriter, author string, limit, offset int) ([]*Article, int64, error)
+	// AllTag 获取全部tag
+	AllTag(ctx context.Context) ([]string, error)
 }
 
 type TagRepo interface {
@@ -63,7 +65,7 @@ func (au *ArticleUseCase) CreateArticle(ctx context.Context, article *Article) (
 	}
 	// 文章作者信息
 	article.Author = &Author{
-		ID:       user.Id,
+		ID:       user.ID,
 		Username: user.Username,
 		Image:    user.Image,
 		Bio:      user.Bio,
@@ -92,4 +94,13 @@ func (au *ArticleUseCase) ArticleList(ctx context.Context, tagName, author, favo
 		return nil, 0, errors.NewHTTPError(500, "body", err.Error())
 	}
 	return articles, uint64(count), nil
+}
+
+// GetTags 获取所有tag
+func (au *ArticleUseCase) GetTags(ctx context.Context) ([]string, error) {
+	tags, err := au.articleRepo.AllTag(ctx)
+	if err != nil {
+		return nil, errors.NewHTTPError(500, "body", err.Error())
+	}
+	return tags, nil
 }

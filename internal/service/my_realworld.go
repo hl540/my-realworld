@@ -103,16 +103,15 @@ func (s *MyRealworldService) GetUser(ctx context.Context, req *pb.GetUserReq) (*
 		return nil, errors.NewHTTPError(500, "body", "The username are required")
 	}
 	// 查询指定用户信息
-	user, err := s.uu.GetUserByUsername(ctx, req.Username)
+	user, following, err := s.uu.GetUserByUsername(ctx, req.Username)
 	if err != nil {
 		return nil, err
 	}
 	return &pb.GetUserRsp{Profile: &pb.Author{
-		Username: user.Username,
-		Bio:      user.Bio,
-		Image:    user.Image,
-		// TODO
-		Following: false,
+		Username:  user.Username,
+		Bio:       user.Bio,
+		Image:     user.Image,
+		Following: following,
 	}}, nil
 }
 
@@ -245,6 +244,9 @@ func (s *MyRealworldService) UnfavoriteArticle(ctx context.Context, req *pb.Favo
 }
 
 func (s *MyRealworldService) GetTags(ctx context.Context, req *pb.GetTagsReq) (*pb.GetTagsRsp, error) {
-	return nil, errors.NewHTTPError(501, "body", "xxxxxxxxxx")
-	return &pb.GetTagsRsp{}, nil
+	tags, err := s.au.GetTags(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return &pb.GetTagsRsp{Tags: tags}, nil
 }
