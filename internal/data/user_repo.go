@@ -3,6 +3,7 @@ package data
 import (
 	"context"
 	"github.com/hl540/my-realworld/internal/biz"
+	"xorm.io/xorm"
 )
 
 type userRepo struct {
@@ -21,11 +22,11 @@ func (u *userRepo) Add(ctx context.Context, user *biz.User) (*biz.User, error) {
 		Image:    user.Image,
 		Bio:      user.Bio,
 	}
-	err := u.db.WithContext(ctx).Model(User{}).Create(data).Error
+	_, err := u.db.Context(ctx).Insert(data)
 	if err != nil {
 		return nil, err
 	}
-	user.ID = data.ID
+	user.Id = data.Id
 	return user, nil
 }
 
@@ -43,7 +44,7 @@ func (u *userRepo) Save(ctx context.Context, user *biz.User) (*biz.User, error) 
 	if user.Password != "" {
 		data.Password = user.Password
 	}
-	err := u.db.WithContext(ctx).Model(User{}).Where("id = ?", user.ID).Updates(data).Error
+	_, err := u.db.Context(ctx).ID(user.Id).Update(data)
 	if err != nil {
 		return nil, err
 	}
@@ -52,9 +53,12 @@ func (u *userRepo) Save(ctx context.Context, user *biz.User) (*biz.User, error) 
 
 func (u *userRepo) GetByUsername(ctx context.Context, username string) (*biz.User, error) {
 	data := &User{}
-	err := u.db.WithContext(ctx).Model(User{}).Where("username = ?", username).First(data).Error
+	has, err := u.db.Context(ctx).Where("username = ?", username).Get(data)
 	if err != nil {
 		return nil, err
+	}
+	if !has {
+		return nil, xorm.ErrNotExist
 	}
 	return &biz.User{
 		Username: data.Username,
@@ -62,15 +66,18 @@ func (u *userRepo) GetByUsername(ctx context.Context, username string) (*biz.Use
 		Email:    data.Email,
 		Image:    data.Image,
 		Bio:      data.Bio,
-		ID:       data.ID,
+		Id:       data.Id,
 	}, nil
 }
 
 func (u *userRepo) GetByEmail(ctx context.Context, email string) (*biz.User, error) {
 	data := &User{}
-	err := u.db.WithContext(ctx).Model(User{}).Where("email = ?", email).First(data).Error
+	has, err := u.db.Context(ctx).Where("email = ?", email).Get(data)
 	if err != nil {
 		return nil, err
+	}
+	if !has {
+		return nil, xorm.ErrNotExist
 	}
 	return &biz.User{
 		Username: data.Username,
@@ -78,15 +85,18 @@ func (u *userRepo) GetByEmail(ctx context.Context, email string) (*biz.User, err
 		Email:    data.Email,
 		Image:    data.Image,
 		Bio:      data.Bio,
-		ID:       data.ID,
+		Id:       data.Id,
 	}, nil
 }
 
 func (u *userRepo) GetByID(ctx context.Context, id interface{}) (*biz.User, error) {
 	data := &User{}
-	err := u.db.WithContext(ctx).Model(User{}).Where("id = ?", id).First(data).Error
+	has, err := u.db.Context(ctx).ID(id).Get(data)
 	if err != nil {
 		return nil, err
+	}
+	if !has {
+		return nil, xorm.ErrNotExist
 	}
 	return &biz.User{
 		Username: data.Username,
@@ -94,46 +104,14 @@ func (u *userRepo) GetByID(ctx context.Context, id interface{}) (*biz.User, erro
 		Email:    data.Email,
 		Image:    data.Image,
 		Bio:      data.Bio,
-		ID:       data.ID,
+		Id:       data.Id,
 	}, nil
-}
-
-func (u *userRepo) AdditionalToArticle(ctx context.Context, articles []*biz.Article) error {
-	ids := make([]uint, 0)
-	for _, article := range articles {
-		ids = append(ids, article.Author.ID)
-	}
-	// 查询author
-	users := make([]*User, 0)
-	err := u.db.WithContext(ctx).Model(User{}).Where("id IN (?)", ids).Find(&users).Error
-	if err != nil {
-		return err
-	}
-	// 关联user到article上
-	userMap := make(map[uint]*User)
-	for _, user := range users {
-		userMap[user.ID] = user
-	}
-	for _, article := range articles {
-		if _, ok := userMap[article.Author.ID]; !ok {
-			continue
-		}
-		article.Author = &biz.Author{
-			ID:        userMap[article.Author.ID].ID,
-			Username:  userMap[article.Author.ID].Username,
-			Image:     userMap[article.Author.ID].Image,
-			Bio:       userMap[article.Author.ID].Bio,
-			Following: false,
-		}
-	}
-	return nil
 }
 
 func (u *userRepo) AddFollow(ctx context.Context, user *biz.User, targetUser *biz.User) error {
 	// 查询关注是否存在
-	var count int64
-	query := u.db.WithContext(ctx).Model(Follow{}).Where("user_id = ? AND target_id = ?", user.ID, targetUser.ID)
-	if err := query.Count(&count).Error; err != nil {
+	count, err := u.db.Context(ctx).Where("user_id = ? AND target_id = ?", user.Id, targetUser.Id).Count(Follow{})
+	if err != nil {
 		return err
 	}
 	// 已经关注
@@ -141,17 +119,17 @@ func (u *userRepo) AddFollow(ctx context.Context, user *biz.User, targetUser *bi
 		return nil
 	}
 	// 添加关注
-	return u.db.WithContext(ctx).Model(Follow{}).Create(&Follow{
-		UserID:   user.ID,
-		TargetID: targetUser.ID,
-	}).Error
+	_, err = u.db.Context(ctx).Insert(&Follow{
+		UserId:   user.Id,
+		TargetId: targetUser.Id,
+	})
+	return err
 }
 
 func (u *userRepo) DelFollow(ctx context.Context, user *biz.User, targetUser *biz.User) error {
 	// 查询关注是否存在
-	var count int64
-	query := u.db.WithContext(ctx).Model(Follow{}).Where("user_id = ? AND target_id = ?", user.ID, targetUser.ID)
-	if err := query.Count(&count).Error; err != nil {
+	count, err := u.db.Context(ctx).Where("user_id = ? AND target_id = ?", user.Id, targetUser.Id).Count(Follow{})
+	if err != nil {
 		return err
 	}
 	// 已经取消关注
@@ -159,19 +137,15 @@ func (u *userRepo) DelFollow(ctx context.Context, user *biz.User, targetUser *bi
 		return nil
 	}
 	// 删除关注
-	return u.db.WithContext(ctx).Where("user_id = ? AND target_id = ?", user.ID, targetUser.ID).Delete(&Follow{}).Error
+	_, err = u.db.Context(ctx).Where("user_id = ? AND target_id = ?", user.Id, targetUser.Id).Delete(&Follow{})
+	return err
 }
 
-func (u *userRepo) GetFollowStatus(ctx context.Context, user *biz.User, currentUserID uint) (bool, error) {
+func (u *userRepo) GetFollowStatus(ctx context.Context, user *biz.User, currentUserID int64) (bool, error) {
 	// 查询关注信息
-	var count int64
-	err := u.db.WithContext(ctx).Model(Follow{}).Where("user_id = ? AND target_id = ?", currentUserID, user.ID).Count(&count).Error
+	count, err := u.db.Context(ctx).Where("user_id = ? AND target_id = ?", currentUserID, user.Id).Count(Follow{})
 	if err != nil {
 		return false, err
 	}
 	return count > 0, nil
-}
-
-func (u *userRepo) AdditionalFollowToArticle(ctx context.Context, articles []*biz.Article, currentUserID uint) error {
-	return nil
 }

@@ -14,7 +14,7 @@ type User struct {
 	Email    string
 	Image    string
 	Bio      string
-	ID       uint
+	Id       int64
 }
 
 type UserRepo interface {
@@ -28,16 +28,12 @@ type UserRepo interface {
 	GetByEmail(ctx context.Context, email string) (*User, error)
 	// GetByID 获取用户信息
 	GetByID(ctx context.Context, id interface{}) (*User, error)
-	// AdditionalToArticle 将user附加到article
-	AdditionalToArticle(ctx context.Context, articles []*Article) error
 	// AddFollow 关注用户
 	AddFollow(ctx context.Context, user *User, targetUser *User) error
 	// DelFollow 取消关注
 	DelFollow(ctx context.Context, user *User, targetUser *User) error
 	// GetFollowStatus 获取用户关注状态
-	GetFollowStatus(ctx context.Context, users *User, currentUserID uint) (bool, error)
-	// AdditionalFollowToArticle 附加关注信息到文章作者
-	AdditionalFollowToArticle(ctx context.Context, articles []*Article, currentUserID uint) error
+	GetFollowStatus(ctx context.Context, users *User, currentUserID int64) (bool, error)
 }
 
 type UserUseCase struct {
@@ -65,7 +61,7 @@ func (uu *UserUseCase) Register(ctx context.Context, user *User) (*User, string,
 	}
 	// 生成token
 	token, err := util.NewJwtByData(uu.conf.Jwt.GetSecretKey(), map[string]interface{}{
-		util.UserID:    user.ID,
+		util.UserID:    user.Id,
 		util.UserName:  user.Username,
 		util.UserEmail: user.Email,
 	}).Token()
@@ -82,7 +78,7 @@ func (uu *UserUseCase) UpdateUser(ctx context.Context, newUser *User) (*User, er
 	if userInfo == nil {
 		return nil, errors.NewHTTPError(401, "body", "there is no jwt token")
 	}
-	newUser.ID = userInfo.UserID
+	newUser.Id = userInfo.UserID
 
 	// 对密码进行加密
 	if newUser.Password != "" {
@@ -125,7 +121,7 @@ func (uu *UserUseCase) Login(ctx context.Context, email, password string) (*User
 
 	// 生成token
 	token, err := util.NewJwtByData(uu.conf.Jwt.GetSecretKey(), map[string]interface{}{
-		util.UserID:    user.ID,
+		util.UserID:    user.Id,
 		util.UserName:  user.Username,
 		util.UserEmail: user.Email,
 	}).Token()
@@ -162,7 +158,7 @@ func (uu *UserUseCase) FollowUser(ctx context.Context, username string) (*User, 
 		return nil, errors.NewHTTPError(500, "body", err.Error())
 	}
 	// 添加关注
-	err = uu.userRepo.AddFollow(ctx, &User{ID: userInfo.UserID}, targetUser)
+	err = uu.userRepo.AddFollow(ctx, &User{Id: userInfo.UserID}, targetUser)
 	if err != nil {
 		return nil, errors.NewHTTPError(500, "body", err.Error())
 	}
@@ -182,7 +178,7 @@ func (uu *UserUseCase) UnfollowUser(ctx context.Context, username string) (*User
 		return nil, errors.NewHTTPError(500, "body", err.Error())
 	}
 	// 添加关注
-	err = uu.userRepo.DelFollow(ctx, &User{ID: userInfo.UserID}, targetUser)
+	err = uu.userRepo.DelFollow(ctx, &User{Id: userInfo.UserID}, targetUser)
 	if err != nil {
 		return nil, errors.NewHTTPError(500, "body", err.Error())
 	}

@@ -1,15 +1,20 @@
 package data
 
-import "gorm.io/gorm"
+import (
+	"time"
+)
 
 // User 用户
 type User struct {
-	gorm.Model
-	Username string `gorm:"column:username;unique;not null;"`
-	Password string `gorm:"column:password;not null;"`
-	Email    string `gorm:"column:email;unique;not null;"`
-	Image    string `gorm:"column:image;"`
-	Bio      string `gorm:"column:bio;"`
+	Id        int64     `xorm:"pk autoincr"`
+	CreatedAt time.Time `xorm:"created"`
+	UpdatedAt time.Time `xorm:"updated"`
+	DeletedAt time.Time `xorm:"deleted"`
+	Username  string    `xorm:"notnull unique"`
+	Password  string    `xorm:"notnull"`
+	Email     string    `xorm:"notnull unique"`
+	Image     string
+	Bio       string
 }
 
 func (u *User) TableName() string {
@@ -18,9 +23,12 @@ func (u *User) TableName() string {
 
 // Follow 关注用户
 type Follow struct {
-	gorm.Model
-	UserID   uint `gorm:"column:user_id;"`
-	TargetID uint `gorm:"column:target_id;"`
+	Id        int64     `xorm:"pk autoincr"`
+	CreatedAt time.Time `xorm:"created"`
+	UpdatedAt time.Time `xorm:"updated"`
+	DeletedAt time.Time `xorm:"deleted"`
+	UserId    int64
+	TargetId  int64
 }
 
 func (f *Follow) TableName() string {
@@ -29,12 +37,15 @@ func (f *Follow) TableName() string {
 
 // Article 文章
 type Article struct {
-	gorm.Model
-	Slug        string `gorm:"column:slug;unique"`
-	Title       string `gorm:"column:title;"`
-	Description string `gorm:"column:description;"`
-	Body        string `gorm:"column:body;"`
-	AuthorID    uint   `gorm:"column:author_id;"`
+	Id          int64     `xorm:"pk autoincr"`
+	CreatedAt   time.Time `xorm:"created"`
+	UpdatedAt   time.Time `xorm:"updated"`
+	DeletedAt   time.Time `xorm:"deleted"`
+	Slug        string
+	Title       string
+	Description string
+	Body        string
+	AuthorId    int64
 }
 
 func (a *Article) TableName() string {
@@ -43,9 +54,12 @@ func (a *Article) TableName() string {
 
 // Tag 标签
 type Tag struct {
-	gorm.Model
-	ArticleID uint   `gorm:"column:article_id;"`
-	Name      string `gorm:"column:name;"`
+	Id        int64     `xorm:"pk autoincr"`
+	CreatedAt time.Time `xorm:"created"`
+	UpdatedAt time.Time `xorm:"updated"`
+	DeletedAt time.Time `xorm:"deleted"`
+	ArticleId int64
+	Name      string
 }
 
 func (t *Tag) TableName() string {
@@ -54,9 +68,12 @@ func (t *Tag) TableName() string {
 
 // Favorite 收藏文章
 type Favorite struct {
-	gorm.Model
-	ArticleID uint `gorm:"column:article_id;"`
-	UserID    uint `gorm:"column:user_id;"`
+	Id        int64     `xorm:"pk autoincr"`
+	CreatedAt time.Time `xorm:"created"`
+	UpdatedAt time.Time `xorm:"updated"`
+	DeletedAt time.Time `xorm:"deleted"`
+	ArticleId int64
+	UserId    int64
 }
 
 func (f *Favorite) TableName() string {

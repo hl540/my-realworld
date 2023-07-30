@@ -166,7 +166,7 @@ func (s *MyRealworldService) ArticleList(ctx context.Context, req *pb.ArticleLis
 			CreatedAt:      article.CreatedAt,
 			UpdatedAt:      article.UpdatedAt,
 			Favorited:      article.Favorited,
-			FavoritesCount: article.FavoritesCount,
+			FavoritesCount: uint64(article.FavoritesCount),
 			Author: &pb.Author{
 				Username:  article.Author.Username,
 				Bio:       article.Author.Bio,
@@ -205,7 +205,7 @@ func (s *MyRealworldService) CreateArticle(ctx context.Context, req *pb.CreateAr
 		CreatedAt:      article.CreatedAt,
 		UpdatedAt:      article.UpdatedAt,
 		Favorited:      article.Favorited,
-		FavoritesCount: article.FavoritesCount,
+		FavoritesCount: uint64(article.FavoritesCount),
 		Author: &pb.Author{
 			Username:  article.Author.Username,
 			Bio:       article.Author.Bio,

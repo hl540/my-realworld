@@ -4,7 +4,8 @@ import (
 	"context"
 	"github.com/hl540/my-realworld/internal/biz"
 	"github.com/hl540/my-realworld/internal/src/util"
-	"gorm.io/gorm"
+	"xorm.io/builder"
+	"xorm.io/xorm"
 )
 
 type articleRepo struct {
@@ -16,60 +17,52 @@ func NewArticleRepo(data *Data) biz.ArticleRepo {
 }
 
 func (a *articleRepo) Add(ctx context.Context, article *biz.Article) error {
+	data := &Article{
+		Slug:        article.Slug,
+		Title:       article.Title,
+		Description: article.Description,
+		Body:        article.Body,
+		AuthorId:    article.Author.Id,
+	}
 	// 事务
-	return a.db.WithContext(ctx).Transaction(func(tx *gorm.DB) error {
-		// 插入文章
-		poArticle := &Article{
-			Slug:        article.Slug,
-			Title:       article.Title,
-			Description: article.Description,
-			Body:        article.Body,
-			AuthorID:    article.Author.ID,
+	_, err := a.db.Transaction(func(session *xorm.Session) (interface{}, error) {
+		if _, err := session.Context(ctx).Insert(data); err != nil {
+			return nil, err
 		}
-		if err := tx.Create(poArticle).Error; err != nil {
-			return err
+		tags := make([]*Tag, 0)
+		for _, tag := range article.TagList {
+			tags = append(tags, &Tag{ArticleId: data.Id, Name: tag})
 		}
-		// 插入标签
-		if len(article.TagList) > 0 {
-			poTags := make([]*Tag, 0)
-			for _, tag := range article.TagList {
-				poTags = append(poTags, &Tag{ArticleID: poArticle.ID, Name: tag})
-			}
-			if err := tx.Create(poTags).Error; err != nil {
-				return err
-			}
+		if _, err := session.Context(ctx).Insert(tags); err != nil {
+			return nil, err
 		}
-		return nil
+		return true, nil
 	})
+	return err
 }
 
 func (a *articleRepo) List(ctx context.Context, tagName, favoriter, author string, limit, offset int) ([]*biz.Article, int64, error) {
-	query := a.db.WithContext(ctx).Model(Article{})
-
+	query := a.db.Table("article")
+	query = query.Join("LEFT", "tag", "tag.article_id = article.id")
+	query = query.Join("LEFT", "favorite", "favorite.article_id = article.id")
 	// 按tag搜索
 	if tagName != "" {
-		query = query.Joins("LEFT JOIN tag ON tag.article_id = article.id")
 		query = query.Where("tag.name = ?", tagName)
 	}
-
 	// 按收藏人搜索
 	if favoriter != "" {
-		query = query.Joins("LEFT JOIN favorite ON favorite.article_id = article.id")
-		query = query.Where(
-			"favorite.user_id IN (?)",
-			a.db.Select("id").Model(User{}).Where("username = ?", favoriter),
-		)
+		subQuery := builder.Select("id").From("user").Where(builder.Eq{"username": favoriter})
+		query = query.In("favorite.user_id", subQuery)
 	}
-
 	// 按作者搜索
 	if author != "" {
-		query = query.Joins("LEFT JOIN user ON article.author_id = user.id")
-		query = query.Where("user.username = ?", author)
+		subQuery := builder.Select("id").From("user").Where(builder.Eq{"username": author})
+		query = query.In("author_id", subQuery)
 	}
 
 	// 查询数量
-	var count int64
-	if err := query.Count(&count).Error; err != nil {
+	count, err := query.Context(ctx).Count()
+	if err != nil {
 		return nil, 0, err
 	}
 	if count == 0 {
@@ -77,36 +70,145 @@ func (a *articleRepo) List(ctx context.Context, tagName, favoriter, author strin
 	}
 
 	// 查询分页结果
-	limit = util.IntDefault(limit, 15)
-	query = query.Offset(offset).Limit(limit)
-	var articles []*Article
-	if err := query.Find(&articles).Error; err != nil {
+	query = query.Limit(util.IntDefault(limit, 15), offset)
+	articles := make([]*Article, 0)
+	err = query.Context(ctx).Find(&articles)
+	if err != nil {
 		return nil, 0, nil
 	}
 
 	// 转换模型
 	result := make([]*biz.Article, 0)
 	for _, article := range articles {
-		result = append(result, &biz.Article{
-			ID:             article.ID,
-			Slug:           article.Slug,
-			Title:          article.Title,
-			Description:    article.Description,
-			Body:           article.Body,
-			TagList:        make([]string, 0),
-			Author:         &biz.Author{ID: article.AuthorID},
-			Favorited:      false,
-			FavoritesCount: 0,
-			CreatedAt:      article.CreatedAt.String(),
-			UpdatedAt:      article.UpdatedAt.String(),
-		})
+		tArticle := &biz.Article{
+			Id:          article.Id,
+			Slug:        article.Slug,
+			Title:       article.Title,
+			Description: article.Description,
+			Body:        article.Body,
+			Author:      &biz.Author{Id: article.AuthorId},
+			CreatedAt:   article.CreatedAt.String(),
+			UpdatedAt:   article.UpdatedAt.String(),
+		}
+		result = append(result, tArticle)
+	}
+	// 附加tag信息
+	if err := a.additionalTag(ctx, result); err != nil {
+		return nil, 0, err
+	}
+	// 附加作者信息
+	if err := a.additionalAuthor(ctx, result); err != nil {
+		return nil, 0, err
 	}
 	return result, count, nil
 }
 
+// 附加tag信息
+func (a *articleRepo) additionalTag(ctx context.Context, articles []*biz.Article) error {
+	ids := make([]int64, 0)
+	for _, article := range articles {
+		ids = append(ids, article.Author.Id)
+	}
+	// 查询tag
+	tags := make([]*Tag, 0)
+	err := a.db.Context(ctx).In("article_id", ids).Find(&tags)
+	if err != nil {
+		return err
+	}
+	tagMap := make(map[int64][]string)
+	for _, tag := range tags {
+		tagMap[tag.ArticleId] = append(tagMap[tag.ArticleId], tag.Name)
+	}
+	for _, article := range articles {
+		if _, ok := tagMap[article.Id]; ok {
+			article.TagList = tagMap[article.Id]
+		}
+	}
+	return nil
+}
+
+// 附加tag信息
+func (a *articleRepo) additionalAuthor(ctx context.Context, articles []*biz.Article) error {
+	ids := make([]int64, 0)
+	for _, article := range articles {
+		ids = append(ids, article.Author.Id)
+	}
+	// 查询作者
+	users := make([]*User, 0)
+	err := a.db.Context(ctx).In("id", ids).Find(&users)
+	if err != nil {
+		return err
+	}
+	userMap := make(map[int64]*User)
+	for _, user := range users {
+		userMap[user.Id] = user
+	}
+	// 查询作者关注信息
+	follows := make([]*Follow, 0)
+	currentUserID := util.GetUserInfo(ctx).UserID
+	err = a.db.Context(ctx).Where("user_id = ?", currentUserID).In("target_id", ids).Find(&follows)
+	if err != nil {
+		return err
+	}
+	followMap := make(map[int64]bool)
+	for _, follow := range follows {
+		followMap[follow.TargetId] = true
+	}
+
+	for _, article := range articles {
+		if author, ok := userMap[article.Author.Id]; ok {
+			article.Author = &biz.Author{
+				Id:        author.Id,
+				Username:  author.Username,
+				Image:     author.Image,
+				Bio:       author.Bio,
+				Following: followMap[author.Id],
+			}
+		}
+	}
+	return nil
+}
+
+// 附加文章收藏信息信息
+func (a *articleRepo) additionalFollowing(ctx context.Context, articles []*biz.Article) error {
+	ids := make([]int64, 0)
+	for _, article := range articles {
+		ids = append(ids, article.Id)
+	}
+	// 查询当前用户是否收藏
+	favorites := make([]*Favorite, 0)
+	currentUserID := util.GetUserInfo(ctx).UserID
+	err := a.db.Context(ctx).Where("user_id = ?", currentUserID).In("target_id", ids).Find(&favorites)
+	if err != nil {
+		return err
+	}
+	favoriteMap := make(map[int64]bool)
+	for _, favorite := range favorites {
+		favoriteMap[favorite.ArticleId] = true
+	}
+	// 查询关注总量
+	favoritesCount := make([]struct {
+		Count     int64
+		ArticleId int64
+	}, 0)
+	query := a.db.Context(ctx).Table(Favorite{}).Select("COUNT(*) as count, article_id")
+	err = query.In("article_id", ids).GroupBy("article_id").Find(&favoritesCount)
+	if err != nil {
+		return err
+	}
+	favoritesCountMap := make(map[int64]int64)
+	for _, favorites := range favoritesCount {
+		favoritesCountMap[favorites.ArticleId] = favorites.Count
+	}
+	for _, article := range articles {
+		article.FavoritesCount = favoritesCountMap[article.Id]
+	}
+	return nil
+}
+
 func (a *articleRepo) AllTag(ctx context.Context) ([]string, error) {
 	tags := make([]*Tag, 0)
-	err := a.db.WithContext(ctx).Model(Tag{}).Group("name").Find(&tags).Error
+	err := a.db.Context(ctx).GroupBy("name").Find(&tags)
 	if err != nil {
 		return nil, err
 	}

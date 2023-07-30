@@ -8,8 +8,16 @@ import (
 	"time"
 )
 
+type Author struct {
+	Id        int64
+	Username  string
+	Image     string
+	Bio       string
+	Following bool
+}
+
 type Article struct {
-	ID             uint
+	Id             int64
 	Slug           string
 	Title          string
 	Description    string
@@ -17,7 +25,7 @@ type Article struct {
 	TagList        []string // 标签
 	Author         *Author  // 作者
 	Favorited      bool     // 是否收藏
-	FavoritesCount uint64   // 收藏次数
+	FavoritesCount int64    // 收藏次数
 	CreatedAt      string
 	UpdatedAt      string
 }
@@ -31,23 +39,16 @@ type ArticleRepo interface {
 	AllTag(ctx context.Context) ([]string, error)
 }
 
-type TagRepo interface {
-	// AdditionalToArticle 将tag附加到article上
-	AdditionalToArticle(ctx context.Context, articles []*Article) error
-}
-
 type ArticleUseCase struct {
 	articleRepo ArticleRepo
 	userRepo    UserRepo
-	tagRepo     TagRepo
 	log         *log.Helper
 }
 
-func NewArticleUseCase(articleRepo ArticleRepo, userRepo UserRepo, tagRepo TagRepo, logger log.Logger) *ArticleUseCase {
+func NewArticleUseCase(articleRepo ArticleRepo, userRepo UserRepo, logger log.Logger) *ArticleUseCase {
 	return &ArticleUseCase{
 		articleRepo: articleRepo,
 		userRepo:    userRepo,
-		tagRepo:     tagRepo,
 		log:         log.NewHelper(logger),
 	}
 }
@@ -65,7 +66,7 @@ func (au *ArticleUseCase) CreateArticle(ctx context.Context, article *Article) (
 	}
 	// 文章作者信息
 	article.Author = &Author{
-		ID:       user.ID,
+		Id:       user.Id,
 		Username: user.Username,
 		Image:    user.Image,
 		Bio:      user.Bio,
@@ -83,14 +84,6 @@ func (au *ArticleUseCase) ArticleList(ctx context.Context, tagName, author, favo
 	// 查询文章
 	articles, count, err := au.articleRepo.List(ctx, tagName, favorited, author, int(limit), int(offset))
 	if err != nil {
-		return nil, 0, errors.NewHTTPError(500, "body", err.Error())
-	}
-	// 附加tag信息
-	if au.tagRepo.AdditionalToArticle(ctx, articles); err != nil {
-		return nil, 0, errors.NewHTTPError(500, "body", err.Error())
-	}
-	// 附加author信息
-	if au.userRepo.AdditionalToArticle(ctx, articles); err != nil {
 		return nil, 0, errors.NewHTTPError(500, "body", err.Error())
 	}
 	return articles, uint64(count), nil

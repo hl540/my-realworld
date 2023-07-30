@@ -5,52 +5,41 @@ import (
 	"github.com/google/wire"
 	"github.com/hl540/my-realworld/internal/conf"
 	_ "github.com/mattn/go-sqlite3"
-	"gorm.io/driver/sqlite"
-	"gorm.io/gorm"
-	gormlogger "gorm.io/gorm/logger"
+	"xorm.io/xorm"
+	xormlog "xorm.io/xorm/log"
 )
 
 // ProviderSet is data providers.
-var ProviderSet = wire.NewSet(NewData, NewGormClient, NewUserRepo, NewArticleRepo, NewTagRepo)
+var ProviderSet = wire.NewSet(NewData, NewXormClient, NewUserRepo, NewArticleRepo)
 
 // Data .
 type Data struct {
-	db  *gorm.DB
+	db  *xorm.Engine
 	log *log.Helper
 }
 
-func NewGormClient(conf *conf.Data, logger log.Logger) *gorm.DB {
+func NewXormClient(conf *conf.Data, logger log.Logger) *xorm.Engine {
 	log := log.NewHelper(logger)
-	client, err := gorm.Open(
-		sqlite.Open(conf.Database.Driver),
-		&gorm.Config{
-			Logger: gormlogger.Default.LogMode(gormlogger.Info),
-		},
-	)
+	client, err := xorm.NewEngine(conf.GetDatabase().GetDriver(), conf.GetDatabase().GetSource())
 	if err != nil {
 		log.Fatalf("failed opening connection to db: %v", err)
 	}
-
-	err = client.AutoMigrate(
-		&User{},
-		&Follow{},
-		&Article{},
-		&Tag{},
-		&Favorite{},
-	)
+	err = client.Sync(&User{}, &Follow{}, &Article{}, &Tag{}, &Favorite{})
 	if err != nil {
-		log.Fatalf("failed creating schema resources: %v", err)
+		log.Fatalf("failed opening connection to db: %v", err)
 	}
+	client.ShowSQL(true)
+	client.Logger().SetLevel(xormlog.LOG_DEBUG)
 	return client
 }
 
 // NewData .
-func NewData(gormClient *gorm.DB, logger log.Logger) (*Data, func(), error) {
+func NewData(xormClient *xorm.Engine, logger log.Logger) (*Data, func(), error) {
 	cleanup := func() {
 		log.NewHelper(logger).Info("closing the data resources")
 	}
 	return &Data{
-		db:  gormClient,
+		db:  xormClient,
 		log: log.NewHelper(logger),
 	}, cleanup, nil
 }
