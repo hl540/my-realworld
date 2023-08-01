@@ -183,7 +183,27 @@ func (s *MyRealworldService) ArticleFeed(ctx context.Context, req *pb.ArticleFee
 }
 
 func (s *MyRealworldService) GetArticle(ctx context.Context, req *pb.GetArticleReq) (*pb.GetArticleRsp, error) {
-	return &pb.GetArticleRsp{}, nil
+	article, err := s.au.GetArticle(ctx, req.GetSlug())
+	if err != nil {
+		return nil, err
+	}
+	return &pb.GetArticleRsp{Article: &pb.Article{
+		Slug:           article.Slug,
+		Title:          article.Title,
+		Description:    article.Description,
+		Body:           article.Body,
+		TagList:        article.TagList,
+		CreatedAt:      article.CreatedAt,
+		UpdatedAt:      article.UpdatedAt,
+		Favorited:      article.Favorited,
+		FavoritesCount: uint64(article.FavoritesCount),
+		Author: &pb.Author{
+			Username:  article.Author.Username,
+			Bio:       article.Author.Bio,
+			Image:     article.Author.Image,
+			Following: article.Author.Following,
+		},
+	}}, nil
 }
 
 func (s *MyRealworldService) CreateArticle(ctx context.Context, req *pb.CreateArticleReq) (*pb.CreateArticleRsp, error) {
@@ -216,10 +236,48 @@ func (s *MyRealworldService) CreateArticle(ctx context.Context, req *pb.CreateAr
 }
 
 func (s *MyRealworldService) UpdateArticle(ctx context.Context, req *pb.UpdateArticleReq) (*pb.UpdateArticleRsp, error) {
-	return &pb.UpdateArticleRsp{}, nil
+	if req.Slug == "" {
+		return nil, errors.NewHTTPError(500, "body", "The slug are required")
+	}
+	if req.Article.Title == "" && req.Article.Description == "" && req.Article.Body == "" {
+		return nil, errors.NewHTTPError(500, "body", "Updated content is a must")
+	}
+	article, err := s.au.UpdateArticle(ctx, &biz.Article{
+		Slug:        req.Slug,
+		Title:       req.Article.Title,
+		Description: req.Article.Description,
+		Body:        req.Article.Body,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return &pb.UpdateArticleRsp{Article: &pb.Article{
+		Slug:           article.Slug,
+		Title:          article.Title,
+		Description:    article.Description,
+		Body:           article.Body,
+		TagList:        article.TagList,
+		CreatedAt:      article.CreatedAt,
+		UpdatedAt:      article.UpdatedAt,
+		Favorited:      article.Favorited,
+		FavoritesCount: uint64(article.FavoritesCount),
+		Author: &pb.Author{
+			Username:  article.Author.Username,
+			Bio:       article.Author.Bio,
+			Image:     article.Author.Image,
+			Following: article.Author.Following,
+		},
+	}}, nil
 }
 
 func (s *MyRealworldService) DeleteArticle(ctx context.Context, req *pb.DeleteArticleReq) (*pb.DeleteArticleRsp, error) {
+	if req.Slug == "" {
+		return nil, errors.NewHTTPError(500, "body", "The slug are required")
+	}
+	err := s.au.DeleteArticle(ctx, req.Slug)
+	if err != nil {
+		return nil, err
+	}
 	return &pb.DeleteArticleRsp{}, nil
 }
 

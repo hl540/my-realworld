@@ -118,7 +118,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/api.my_realworld.v1.UpdateArticleReq_Article'
+                            $ref: '#/components/schemas/api.my_realworld.v1.UpdateArticleReq'
                 required: true
             responses:
                 "200":
@@ -592,6 +592,13 @@ components:
             properties:
                 user:
                     $ref: '#/components/schemas/api.my_realworld.v1.User'
+        api.my_realworld.v1.UpdateArticleReq:
+            type: object
+            properties:
+                slug:
+                    type: string
+                article:
+                    $ref: '#/components/schemas/api.my_realworld.v1.UpdateArticleReq_Article'
         api.my_realworld.v1.UpdateArticleReq_Article:
             type: object
             properties:

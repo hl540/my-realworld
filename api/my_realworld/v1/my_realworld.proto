@@ -82,7 +82,7 @@ service MyRealworld {
 	rpc UpdateArticle(UpdateArticleReq) returns (UpdateArticleRsp) {
 		option (google.api.http) = {
 			put: "/api/articles/{slug}"
-			body: "article"
+			body: "*"
 		};
 	}
 	// 删除文章

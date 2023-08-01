@@ -42,7 +42,7 @@ func (a *articleRepo) Add(ctx context.Context, article *biz.Article) error {
 }
 
 func (a *articleRepo) List(ctx context.Context, tagName, favoriter, author string, limit, offset int) ([]*biz.Article, int64, error) {
-	query := a.db.Table("article")
+	query := a.db.Table(Article{})
 	query = query.Join("LEFT", "tag", "tag.article_id = article.id")
 	query = query.Join("LEFT", "favorite", "favorite.article_id = article.id")
 	// 按tag搜索
@@ -107,7 +107,7 @@ func (a *articleRepo) List(ctx context.Context, tagName, favoriter, author strin
 func (a *articleRepo) additionalTag(ctx context.Context, articles []*biz.Article) error {
 	ids := make([]int64, 0)
 	for _, article := range articles {
-		ids = append(ids, article.Author.Id)
+		ids = append(ids, article.Id)
 	}
 	// 查询tag
 	tags := make([]*Tag, 0)
@@ -127,7 +127,7 @@ func (a *articleRepo) additionalTag(ctx context.Context, articles []*biz.Article
 	return nil
 }
 
-// 附加tag信息
+// 附加Author信息
 func (a *articleRepo) additionalAuthor(ctx context.Context, articles []*biz.Article) error {
 	ids := make([]int64, 0)
 	for _, article := range articles {
@@ -217,4 +217,73 @@ func (a *articleRepo) AllTag(ctx context.Context) ([]string, error) {
 		result = append(result, tag.Name)
 	}
 	return result, nil
+}
+
+func (a *articleRepo) GetBySlug(ctx context.Context, slug string) (*biz.Article, error) {
+	var article = &Article{}
+	ex, err := a.db.Context(ctx).Table(Article{}).Where("slug = ?", slug).Get(article)
+	if err != nil {
+		return nil, err
+	}
+	if !ex {
+		return nil, xorm.ErrNotExist
+	}
+	result := make([]*biz.Article, 0)
+	result = append(result, &biz.Article{
+		Id:          article.Id,
+		Slug:        article.Slug,
+		Title:       article.Title,
+		Description: article.Description,
+		Body:        article.Body,
+		Author:      &biz.Author{Id: article.AuthorId},
+		CreatedAt:   article.CreatedAt.String(),
+		UpdatedAt:   article.UpdatedAt.String(),
+	})
+	// 附加tag信息
+	if err := a.additionalTag(ctx, result); err != nil {
+		return nil, err
+	}
+	// 附加作者信息
+	if err := a.additionalAuthor(ctx, result); err != nil {
+		return nil, err
+	}
+	return result[0], nil
+}
+
+func (a *articleRepo) Save(ctx context.Context, article *biz.Article) error {
+	updata := make(map[string]interface{})
+	if article.Title != "" {
+		updata["title"] = article.Title
+	}
+	if article.Description != "" {
+		updata["description"] = article.Description
+	}
+	if article.Body != "" {
+		updata["body"] = article.Body
+	}
+	_, err := a.db.Context(ctx).Table(Article{}).ID(article.Id).Update(updata)
+	return err
+}
+
+func (a *articleRepo) Delete(ctx context.Context, article *biz.Article) error {
+	// 事务
+	_, err := a.db.Transaction(func(session *xorm.Session) (interface{}, error) {
+		// 删除文章
+		_, err := session.Context(ctx).Table(Article{}).ID(article.Id).Delete(Article{})
+		if err != nil {
+			return nil, err
+		}
+		// 删除文章的标签
+		_, err = session.Context(ctx).Table(Tag{}).Where("article_id = ?", article.Id).Delete(Tag{})
+		if err != nil {
+			return nil, err
+		}
+		// 删除文章的收藏
+		_, err = session.Context(ctx).Table(Favorite{}).Where("article_id = ?", article.Id).Delete(Favorite{})
+		if err != nil {
+			return nil, err
+		}
+		return nil, nil
+	})
+	return err
 }

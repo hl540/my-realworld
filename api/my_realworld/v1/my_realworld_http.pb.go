@@ -327,10 +327,7 @@ func _MyRealworld_CreateArticle0_HTTP_Handler(srv MyRealworldHTTPServer) func(ct
 func _MyRealworld_UpdateArticle0_HTTP_Handler(srv MyRealworldHTTPServer) func(ctx http.Context) error {
 	return func(ctx http.Context) error {
 		var in UpdateArticleReq
-		if err := ctx.Bind(&in.Article); err != nil {
-			return err
-		}
-		if err := ctx.BindQuery(&in); err != nil {
+		if err := ctx.Bind(&in); err != nil {
 			return err
 		}
 		if err := ctx.BindVars(&in); err != nil {
@@ -760,7 +757,7 @@ func (c *MyRealworldHTTPClientImpl) UpdateArticle(ctx context.Context, in *Updat
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationMyRealworldUpdateArticle))
 	opts = append(opts, http.PathTemplate(pattern))
-	err := c.cc.Invoke(ctx, "PUT", path, in.Article, &out, opts...)
+	err := c.cc.Invoke(ctx, "PUT", path, in, &out, opts...)
 	if err != nil {
 		return nil, err
 	}

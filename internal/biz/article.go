@@ -33,10 +33,16 @@ type Article struct {
 type ArticleRepo interface {
 	// Add 新增文章
 	Add(ctx context.Context, article *Article) error
+	// Save 新增文章
+	Save(ctx context.Context, article *Article) error
+	// Delete 删除文章
+	Delete(ctx context.Context, article *Article) error
 	// List 获取文章列表
 	List(ctx context.Context, tagName, favoriter, author string, limit, offset int) ([]*Article, int64, error)
 	// AllTag 获取全部tag
 	AllTag(ctx context.Context) ([]string, error)
+	// GetBySlug 获取全部文章
+	GetBySlug(ctx context.Context, slug string) (*Article, error)
 }
 
 type ArticleUseCase struct {
@@ -96,4 +102,44 @@ func (au *ArticleUseCase) GetTags(ctx context.Context) ([]string, error) {
 		return nil, errors.NewHTTPError(500, "body", err.Error())
 	}
 	return tags, nil
+}
+
+// GetArticle 获取文章信息
+func (au *ArticleUseCase) GetArticle(ctx context.Context, slug string) (*Article, error) {
+	article, err := au.articleRepo.GetBySlug(ctx, slug)
+	if err != nil {
+		return nil, errors.NewHTTPError(500, "body", err.Error())
+	}
+	return article, nil
+}
+
+// UpdateArticle 编辑文章
+func (au *ArticleUseCase) UpdateArticle(ctx context.Context, article *Article) (*Article, error) {
+	// 先查询文章
+	data, err := au.articleRepo.GetBySlug(ctx, article.Slug)
+	if err != nil {
+		return nil, errors.NewHTTPError(500, "body", err.Error())
+	}
+	data.Title = article.Title
+	data.Description = article.Description
+	data.Body = article.Body
+	err = au.articleRepo.Save(ctx, data)
+	if err != nil {
+		return nil, errors.NewHTTPError(500, "body", err.Error())
+	}
+	return data, nil
+}
+
+// DeleteArticle 删除文章
+func (au *ArticleUseCase) DeleteArticle(ctx context.Context, slug string) error {
+	// 先查询文章
+	data, err := au.articleRepo.GetBySlug(ctx, slug)
+	if err != nil {
+		return errors.NewHTTPError(500, "body", err.Error())
+	}
+	err = au.articleRepo.Delete(ctx, data)
+	if err != nil {
+		return errors.NewHTTPError(500, "body", err.Error())
+	}
+	return nil
 }
